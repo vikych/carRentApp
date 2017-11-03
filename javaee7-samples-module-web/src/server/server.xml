@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="Car Rent WLP Server">
+    <!-- Enable features -->
+    <featureManager>
+        <feature>webProfile-7.0</feature>
+        <feature>localConnector-1.0</feature>
+    </featureManager>
+
+    <keyStore id="defaultKeyStore" password="Liberty"/>
+    <remoteFileAccess>
+        <writeDir>${server.config.dir}</writeDir>
+    </remoteFileAccess>
+    <httpEndpoint id="defaultHttpEndpoint" httpPort="8889" httpsPort="9443"/>
+
+    <wasJmsEndpoint id="InboundJmsEndpoint" wasJmsPort="55600" wasJmsSSLPort="55601"/>
+
+    <iiopEndpoint id="defaultIiopEndpoint" iiopPort="55602">
+        <iiopsOptions iiopsPort="55603" sslRef="defaultSSLConfig"/>
+    </iiopEndpoint>
+
+    <applicationManager autoExpand="true"/>
+    <applicationMonitor updateTrigger="mbean"/>
+
+    <!-- configurating test users for local development -->
+    <basicRegistry id="basic">
+        <user name="admin" password="admin"/>
+        <user name="user1" password="user1"/>
+
+        <group name="java_ee7_samples_users">
+            <member name="user1"/>
+        </group>
+    </basicRegistry>
+    <administrator-role>
+        <user>admin</user>
+    </administrator-role>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+    <application id="java_ee7_samples_war_exploded"
+                 location="${project.build.directory}/${project.artifactId}-${project.version}"
+                 name="java_ee7_samples_war_exploded" type="war" context-root="/">
+        <application-bnd>
+            <security-role name="Authenticated">
+                <group name="java_ee7_samples_users"/>
+            </security-role>
+        </application-bnd>
+    </application>
+
+    <logging consoleLogLevel="INFO" traceFormat="BASIC" traceSpecification="*=fine" maxFileSize="2000" maxFiles="5"/>
+
+    <!--Disables autoscan of implicit beans in libraries-->
+    <cdi12 enableImplicitBeanArchives="false"/>
+</server>
+

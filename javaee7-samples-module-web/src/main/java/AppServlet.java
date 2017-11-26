@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class AppServlet extends HttpServlet {
 
@@ -13,11 +12,5 @@ public class AppServlet extends HttpServlet {
 
         RequestDispatcher rd = request.getRequestDispatcher("homepage.html");
         rd.include(request, response);
-
-//        PrintWriter out = response.getWriter();
-//        String uname = request.getParameter("username");
-//        out.print("Hello " + uname);
-//        out.close();
-
     }
 }

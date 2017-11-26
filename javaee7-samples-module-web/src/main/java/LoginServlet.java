@@ -11,7 +11,6 @@ public class LoginServlet extends HttpServlet {
         String uname = request.getParameter("username");
         String pword = request.getParameter("password");
         response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
 
         if (AuthHelper.isAllowed(uname, pword)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("app");

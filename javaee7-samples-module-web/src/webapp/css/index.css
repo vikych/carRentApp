@@ -1,0 +1,248 @@
+.header{
+	background-color: #191919;	
+}
+
+.socialicon{
+list-style-type: none;
+display: inline-block;
+margin: 0px;
+}
+
+.socialicon>li{
+float: left;
+padding-top: 2px;
+
+}
+
+.socialicon>li>a{
+padding-right: 10px;
+color: #fff;
+text-decoration: none;
+}
+
+.socialicon>li>a:hover{
+	color: #C59E47;
+}
+ 
+.logreg{
+ 	list-style-type: none;
+ 	display: inline-block;
+	font-size: 9pt;
+	color: #E7E7E7;
+	margin-bottom: 0px;
+	padding-left: 84%;
+}
+
+.logreg>li{
+	float: left;
+}
+
+.logreg>li>a{
+	text-decoration: none;
+	color: #E7E7E7;
+	padding-right: 6px;
+}
+.logreg>li>a:hover{
+	color:#C59E47;
+}
+
+#navbarontop{
+	padding-left: 589px;
+	padding-top: 17px;
+	height:69px; 
+}
+
+#navbarontop > li > a {
+  	font-family: 'BebasNeue Regular';
+  	font-size: 17px;
+  	color: #313943;
+    padding-top: 5px;
+    padding-bottom: 6px;
+    margin-bottom: 22px;
+ 	padding-left: 10px;
+    padding-right: 10px!important;
+    margin-left: 34px;
+    border-bottom: 2px solid rgba(0,0,0,.0);
+}
+
+#navbarontop > li >a:hover{
+  	background-color: none!important;
+  	background: none!important;
+  	border-bottom: 2px solid #C59E47;
+}
+ 
+
+#navbarontop .open > a,
+#navbarontop .open > a:hover,
+#navbarontop .open > a:focus {
+	background-color: none!important;
+  border-color: #C59E47;
+}
+#navbarontop a:focus {
+  outline: none;
+  border-bottom: 2px solid #C59E47; 
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+	font-family: 'BebasNeue Regular';
+	font-size: 13pt;
+	color: #000;
+	background-color: rgba(255,255,255,.5);
+	text-align: center;
+
+}
+
+.downicon{
+	padding-left: 40px;
+	position: relative;
+    top: 4px;
+}
+.midle-nav{
+	background: rgba(248,199,45,.8);
+ 	border: 0px;
+ 	position: absolute;
+ 	bottom: 0px;
+ 	width: 100%;
+ 	margin: 0px;
+ 	border-radius: 0px;
+}
+
+#navbarmidle{
+		padding-left: 6.6%;
+		padding-bottom: 26px;
+		width: 100%;
+}
+
+.searchtxt{
+	max-width: 1349px;
+}
+
+.searchtxt > h1{
+	font-size: 22pt;
+	color: #fff;
+	margin-top: 14px;
+	margin-bottom: 14px;
+	padding-left: 15px;
+	max-width: 1349px;
+}
+
+.navbar-default .textcostume:hover,
+.navbar-default .textcostume:focus {
+  background-color: #fff;
+}
+
+.navbar-default .textcostume:hover .icon-bar {
+  background-color: #000;
+}
+
+.navbar-default .textcostume:focus .icon-bar{
+	background-color: #000;
+}
+
+.navbar-default .textcostume .icon-bar {
+  background-color: #fff;
+}
+
+.navbar-default .textcostume {
+  border-color: #fff;
+}
+
+.navbar-default .textcostume . {
+  border-color: #fff;
+}
+
+.navbarborder>li{
+	margin-right: 9px;
+}
+
+.navbarborder>li>a{
+	font-size: 13pt;
+	color: #fff !important;
+	background-color: none;
+	padding-top: 11px;
+	padding-bottom: 10px;
+	border: 1px solid #fff!important;
+}
+
+.navbarborder>li>a:hover{
+	color: #F8C72D !important;
+	background-color: #fff!important;
+
+}
+
+.navbarborder>li:last-child{
+ 	padding-right: 0px;
+ 	margin-right: 0px;
+	margin-left: 30px;
+	padding-right: 0px;
+}
+
+.searchform{
+	padding-right: 64px;
+	background: none;
+	background-color: none;
+	border: 1px solid #fff;
+	border-radius: 0px;
+	box-shadow: 0px;
+	box-shadow: inset 0px;
+	height: 44px;
+	margin: 0px;
+}
+
+.searchform:focus {
+  border-color: #fff;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255, 255, 255, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(255, 255, 255, .6);
+}
+
+.searchformmargin{
+	margin: 0px;
+	border: 0px;
+	padding: 0px;
+	margin-right: 9px;
+}
+
+.searchform::-webkit-input-placeholder {
+    color: #fff;
+    font-family: "OpenSans Regular";
+    font-size:13pt;
+    box-shadow: 0px;
+}
+
+.searchform::-moz-placeholder {
+    /* FF 19+ */
+    color: #fff;
+    font-family: "OpenSans Regular";
+    font-size: 13pt;
+    box-shadow: 0px;
+}
+
+.priceslider{
+	font-family: "OpenSans Regular";
+	background-color: none;
+	background: none;
+	border: none;
+	color: #fff;
+}
+
+.slidertxt{
+	font-family: "OpenSans Regular";
+	color: #fff;
+}
+
+.searchnav{
+	margin-right: 7.3%;
+}
+
+.searchbutton{
+	border: 0px;
+	background: none;
+	background-color: none;
+	font-size: 13pt;
+	color: #fff;
+	padding-top: 20px;
+}
+
+.btn-costume{
+	border-radius: 0px;
+}

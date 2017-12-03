@@ -106,6 +106,15 @@ text-decoration: none;
  	border-radius: 0px;
 }
 
+.car-list-nav{
+	background: rgba(248,199,45,.8);
+ 	border: 0px;
+ 	position: absolute;
+ 	width: 100%;
+ 	margin: 0px;
+ 	border-radius: 0px;
+}
+
 #navbarmidle{
 		padding-left: 6.6%;
 		padding-bottom: 26px;
@@ -121,7 +130,6 @@ text-decoration: none;
 	color: #fff;
 	margin-top: 14px;
 	margin-bottom: 14px;
-	padding-left: 15px;
 	max-width: 1349px;
 }
 
@@ -167,13 +175,6 @@ text-decoration: none;
 	color: #F8C72D !important;
 	background-color: #fff!important;
 
-}
-
-.navbarborder>li:last-child{
- 	padding-right: 0px;
- 	margin-right: 0px;
-	margin-left: 30px;
-	padding-right: 0px;
 }
 
 .searchform{

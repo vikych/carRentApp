@@ -1,9 +1,6 @@
 import com.mysql.fabric.jdbc.FabricMySQLDriver;
 
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class ConnectionProvider {
 
@@ -19,13 +16,13 @@ public class ConnectionProvider {
 
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             if (!connection.isClosed()) {
-                System.out.println("Opened connection to " + URL);
+                System.out.println("Connection to " + URL + " opened");
             }
 
             connection.close();
 
             if (connection.isClosed()) {
-                System.out.println("Connection closed to " + URL);
+                System.out.println("Connection to " + URL + " closed");
             }
         } catch (SQLException e) {
             System.err.println("Unable to download driver " + e.getMessage());

@@ -16,8 +16,8 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("app");
             dispatcher.forward(request, response);
         } else {
-            RequestDispatcher rd = request.getRequestDispatcher("authorization_errorpage.html");
-            rd.include(request, response);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("authorization_errorpage.html");
+            dispatcher.include(request, response);
         }
     }
 

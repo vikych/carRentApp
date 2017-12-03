@@ -7,6 +7,9 @@
 	<link rel="stylesheet" type="text/css" href="css/index.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script type="text/javascript" src="js/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+	<script src="/js/homepage.js"></script>
+	<script type="text/javascript" src="js/numeric/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/numeric/jquery.numeric.js"></script>
 </head>
 <body>
 <div class="allcontain">
@@ -17,32 +20,17 @@
 				<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
 			</ul>
 			<ul class="logreg">
-			<li>Give us a call : +29846263 </li>
+			<li>Give us a call : +371 29846263 </li>
 			</ul>
 	</div>
 	<nav class="topnavbar navbar-default topnav">
 		<div class="collapse navbar-collapse" id="upmenu">
 			<ul class="nav navbar-nav" id="navbarontop">
-				<li class="active"><a href="#">HOME</a> </li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle"	data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CATEGORY <span class="caret"></span></a>
-					<ul class="dropdown-menu dropdowncostume" style="top: 55%;">
-						<li><a href="#">Sport</a></li>
-						<li><a href="#">Old</a></li>
-						<li><a href="#">New</a></li>
-					</ul>
-				</li>
-				<li class="dropdown" style="padding-left: 19px;">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">CAR LIST<span class="caret"></span></a>
-						<ul class="dropdown-menu dropdowncostume" style="top: 55%;">
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="3">3</a></li>
-						</ul>
-				</li>
-				<li>
-					<a href="contact.html">CONTACT</a>
-				</li>
+				<li class="active"><a href="#">HOME</a></li>
+				<li class="active"><a href="#">CAR LIST</a></li>
+				<li class="active"><a href="#">RENT A CAR</a></li>
+				<li class="active"><a href="#">RENTAL HISTORY</a></li>
+				<li class="active"><a href="#">EDIT PROFILE</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -73,18 +61,16 @@
 				</div>
 				<form class="navbar-form navbar-left searchformmargin" role="search">
 					<div class="form-group">
-						<input type="text" class="form-control searchform" placeholder="Enter Keyword">
+						<input type="text" class="form-control searchform" placeholder="Manufacturer">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control searchform" placeholder="Model">
+					</div>
+					<div class="form-group">
+						<input type="text" class="form-control searchform inputYear" placeholder="Year">
 					</div>
 				</form>
 				<ul class="nav navbar-nav navbarborder">
-					<li class="li-category">
-						<a class="btn  dropdown-toggle btn-costume"  id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Category<span class="glyphicon glyphicon-chevron-down downicon"></span></a>
-						<ul class="dropdown-menu" id="mydd">
-							<li><a href="#">Epic</a></li>
-							<li><a href="#">Old</a></li>
-							<li><a href="#">New</a></li>
-						</ul>
-					</li>
 					<li class="li-search"> <button class="searchbutton"><span class="glyphicon glyphicon-search "></span></button></li>
 				</ul>
 			</div>

@@ -135,6 +135,10 @@
                     <bootstrapProperties>
                         <wlp.server.name>${wlp.server.name}</wlp.server.name>
                     </bootstrapProperties>
+                    <jvmOptions>
+                        <!-- workaround for debug-server issue: always start in debug mode -->
+                        <param>-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=7777</param>
+                    </jvmOptions>
                 </configuration>
                 <executions>
                     <execution>

@@ -35,7 +35,7 @@ public class Registration extends HttpServlet {
         user.setPassword(password);
 
         if (service.addUser(user)) {
-            RequestDispatcher dispatcher = req.getRequestDispatcher("home.html");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("homepage.html");
             dispatcher.forward(req, response);
         } else {
             RequestDispatcher dispatcher = req.getRequestDispatcher("authorization_errorpage.html");

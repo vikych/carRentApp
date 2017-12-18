@@ -9,15 +9,15 @@ public class UserDAO {
         Connection connection = ConnectionProvider.jdbcConnection();
 
         try {
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO user_info(userID, FirstName, LastName, "
-                    + "Username, Password) VALUES (3,?,?,?,?)");
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO user_info(FirstName, LastName, "
+                    + "Username, Password) VALUES (?,?,?,?)");
 
-            ps.setString(2, user.getFirstName());
-            ps.setString(3, user.getLastName());
-            ps.setString(4, user.getUsername());
-            ps.setString(5, user.getPassword());
+            ps.setString(1, user.getFirstName());
+            ps.setString(2, user.getLastName());
+            ps.setString(3, user.getUsername());
+            ps.setString(4, user.getPassword());
 
-            if(ps.executeUpdate() > 0) {
+            if (ps.executeUpdate() > 0) {
                 return true;
             }
 
@@ -26,6 +26,7 @@ public class UserDAO {
             e.printStackTrace();
         }
 
+        ConnectionProvider.closeConnection(connection);
         return false;
     }
 }

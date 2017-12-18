@@ -15,12 +15,21 @@ public class ConnectionProvider {
             DriverManager.registerDriver(driver);
 
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+
             if (!connection.isClosed()) {
                 System.out.println("Connection to " + URL + " opened");
             }
 
-            connection.close();
+        } catch (SQLException e) {
+            System.err.println("Unable to download driver " + e.getMessage());
+            e.printStackTrace();
+        }
+        return connection;
+    }
 
+    public static void closeConnection(Connection connection) {
+        try {
+            connection.close();
             if (connection.isClosed()) {
                 System.out.println("Connection to " + URL + " closed");
             }
@@ -28,6 +37,6 @@ public class ConnectionProvider {
             System.err.println("Unable to download driver " + e.getMessage());
             e.printStackTrace();
         }
-        return connection;
+
     }
 }

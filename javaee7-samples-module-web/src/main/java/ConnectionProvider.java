@@ -37,6 +37,5 @@ public class ConnectionProvider {
             System.err.println("Unable to download driver " + e.getMessage());
             e.printStackTrace();
         }
-
     }
 }

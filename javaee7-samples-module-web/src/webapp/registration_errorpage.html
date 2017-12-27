@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Authorization</title>
-    <link rel="stylesheet" type="text/css" href="/css/authorization.css">
+    <link rel="stylesheet" type="text/css" href="/css/registration_errorpage.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="/js/authorization.js"></script>
 </head>
@@ -16,13 +16,13 @@
             <input type="text" name="Username" placeholder="Username"/>
             <input type="password" name="Password" placeholder="Password"/>
             <input type="text" name="Email" placeholder="Email"/>
+            <label style="color: red">Username already exists</label>
             <button class="create">create</button>
             <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
         <form action="home" method="post" class="login-form">
             <input type="text" name="username" placeholder="username"/>
             <input type="password" name="password" placeholder="password"/>
-            <label style="color: red">Invalid Credentials</label>
             <button type="submit">login</button>
             <p class="message">Not registered? <a href="#">Create an account</a></p>
         </form>

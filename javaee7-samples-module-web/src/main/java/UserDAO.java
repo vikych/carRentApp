@@ -10,12 +10,13 @@ public class UserDAO {
 
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO user_info(FIRST_NAME, LAST_NAME, "
-                    + "USER_NAME, PASSWORD) VALUES (?,?,?,?)");
+                    + "USER_NAME, PASSWORD, EMAIL) VALUES (?,?,?,?,?)");
 
             ps.setString(1, user.getFirstName());
             ps.setString(2, user.getLastName());
             ps.setString(3, user.getUsername());
             ps.setString(4, user.getPassword());
+            ps.setString(5, user.getEmail());
 
             if (ps.executeUpdate() > 0) {
                 return true;

@@ -15,6 +15,7 @@ public class Registration extends HttpServlet {
     private String lastName;
     private String username;
     private String password;
+    private String email;
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
@@ -25,6 +26,7 @@ public class Registration extends HttpServlet {
         lastName = req.getParameter("LastName");
         username = req.getParameter("Username");
         password = req.getParameter("Password");
+        email = req.getParameter("Email");
         response.setContentType("text/html");
 
         User user = new User();
@@ -33,12 +35,13 @@ public class Registration extends HttpServlet {
         user.setLastName(lastName);
         user.setUsername(username);
         user.setPassword(password);
+        user.setEmail(email);
 
         if (service.addUser(user)) {
             RequestDispatcher dispatcher = req.getRequestDispatcher("homepage.html");
             dispatcher.forward(req, response);
         } else {
-            RequestDispatcher dispatcher = req.getRequestDispatcher("authorization_errorpage.html");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("registration_errorpage.html");
             dispatcher.forward(req, response);
         }
     }

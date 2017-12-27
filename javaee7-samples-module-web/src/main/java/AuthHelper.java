@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class AuthHelper {
 
-    public static final String SELECT_USERNAME_PASSWORD_FROM_USER_INFO = "SELECT Username, Password from user_info";
+    public static final String SELECT_USERNAME_PASSWORD_FROM_USER_INFO = "SELECT USER_NAME, PASSWORD from user_info";
 
     public static boolean isAllowed(String username, String password) {
         Connection connection = ConnectionProvider.jdbcConnection();

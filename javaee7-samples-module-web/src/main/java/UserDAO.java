@@ -9,8 +9,8 @@ public class UserDAO {
         Connection connection = ConnectionProvider.jdbcConnection();
 
         try {
-            PreparedStatement ps = connection.prepareStatement("INSERT INTO user_info(FirstName, LastName, "
-                    + "Username, Password) VALUES (?,?,?,?)");
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO user_info(FIRST_NAME, LAST_NAME, "
+                    + "USER_NAME, PASSWORD) VALUES (?,?,?,?)");
 
             ps.setString(1, user.getFirstName());
             ps.setString(2, user.getLastName());

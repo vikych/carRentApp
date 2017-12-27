@@ -20,5 +20,4 @@ public class LoginServlet extends HttpServlet {
             dispatcher.include(request, response);
         }
     }
-
 }

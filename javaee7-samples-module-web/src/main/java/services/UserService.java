@@ -1,8 +1,8 @@
-package service;
+package services;
 
 import dao.UserDAO;
 import dbconnection.ConnectionProvider;
-import entity.User;
+import entities.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

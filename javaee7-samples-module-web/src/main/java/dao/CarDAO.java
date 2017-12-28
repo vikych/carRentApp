@@ -1,6 +1,6 @@
 package dao;
 
-import entity.Car;
+import entities.Car;
 
 import java.sql.SQLException;
 import java.util.List;

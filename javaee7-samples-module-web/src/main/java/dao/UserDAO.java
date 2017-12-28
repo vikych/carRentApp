@@ -1,6 +1,6 @@
 package dao;
 
-import entity.User;
+import entities.User;
 
 public interface UserDAO {
 

@@ -1,8 +1,8 @@
-package service;
+package services;
 
 import dao.CarDAO;
 import dbconnection.ConnectionProvider;
-import entity.Car;
+import entities.Car;
 
 import java.sql.*;
 import java.util.ArrayList;

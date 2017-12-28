@@ -11,7 +11,7 @@
 
     <servlet>
         <servlet-name>AuthorizationServlet</servlet-name>
-        <servlet-class>servlet.LoginServlet</servlet-class>
+        <servlet-class>servlets.LoginServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -21,7 +21,7 @@
 
     <servlet>
         <servlet-name>ApplicationServlet</servlet-name>
-        <servlet-class>servlet.AppServlet</servlet-class>
+        <servlet-class>servlets.AppServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -31,7 +31,7 @@
 
     <servlet>
         <servlet-name>RegistrationServlet</servlet-name>
-        <servlet-class>servlet.RegistrationServlet</servlet-class>
+        <servlet-class>servlets.RegistrationServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

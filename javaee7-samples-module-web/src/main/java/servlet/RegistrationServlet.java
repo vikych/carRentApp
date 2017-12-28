@@ -1,4 +1,7 @@
+package servlet;
+
 import entity.User;
+import service.UserService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,24 +14,18 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Registration extends HttpServlet {
-
-    private String firstName;
-    private String lastName;
-    private String username;
-    private String password;
-    private String email;
+public class RegistrationServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
 
         UserService service = new UserService();
 
-        firstName = req.getParameter("FirstName");
-        lastName = req.getParameter("LastName");
-        username = req.getParameter("Username");
-        password = req.getParameter("Password");
-        email = req.getParameter("Email");
+        String firstName = req.getParameter("FirstName");
+        String lastName = req.getParameter("LastName");
+        String username = req.getParameter("Username");
+        String password = req.getParameter("Password");
+        String email = req.getParameter("Email");
         response.setContentType("text/html");
 
         User user = new User();

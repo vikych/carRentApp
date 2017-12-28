@@ -15,6 +15,9 @@ public class Car {
     private Blob image;
     private boolean available;
 
+    public Car() {
+    }
+
     public Car(int carPk, String registrationNumber, int modelFk, int year, int vehicletypeFk, int transmissionFk, String color, int price, Blob image, boolean available) {
         this.carPk = carPk;
         this.registrationNumber = registrationNumber;

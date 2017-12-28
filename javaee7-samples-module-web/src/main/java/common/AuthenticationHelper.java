@@ -1,6 +1,10 @@
+package common;
+
+import dbconnection.ConnectionProvider;
+
 import java.sql.*;
 
-public class AuthHelper {
+public class AuthenticationHelper {
 
     public static final String SELECT_USERNAME_PASSWORD_FROM_USER_INFO = "SELECT USER_NAME, PASSWORD from user_info";
 

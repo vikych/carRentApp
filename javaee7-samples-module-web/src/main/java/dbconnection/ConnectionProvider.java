@@ -1,3 +1,5 @@
+package dbconnection;
+
 import com.mysql.fabric.jdbc.FabricMySQLDriver;
 
 import java.sql.*;

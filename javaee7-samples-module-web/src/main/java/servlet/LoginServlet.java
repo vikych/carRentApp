@@ -1,3 +1,7 @@
+package servlet;
+
+import common.AuthenticationHelper;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +16,7 @@ public class LoginServlet extends HttpServlet {
         String pword = request.getParameter("password");
         response.setContentType("text/html");
 
-        if (AuthHelper.isAllowed(uname, pword)) {
+        if (AuthenticationHelper.isAllowed(uname, pword)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("app");
             dispatcher.forward(request, response);
         } else {

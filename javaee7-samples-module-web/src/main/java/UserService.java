@@ -1,3 +1,5 @@
+import entity.User;
+
 public class UserService {
     public boolean addUser(User user) {
 

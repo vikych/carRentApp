@@ -8,15 +8,11 @@ public class JPAUtil {
     Statement st;
 
     public JPAUtil() throws Exception {
-
-//        Class.forName("com.mysql.jdbc.Driver");
-//        System.out.println("Driver Loaded.");
-//        String url = "jdbc:mysql://localhost:3306/databaseconnection";
-
         Connection conn = ConnectionProvider.jdbcConnection();
         System.out.println("Got Connection.");
         st = conn.createStatement();
     }
+
     public void executeSQLCommand(String sql) throws Exception {
         st.executeUpdate(sql);
     }

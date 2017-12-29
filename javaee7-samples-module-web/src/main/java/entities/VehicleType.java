@@ -14,6 +14,9 @@ public class VehicleType {
     @Column(name = "VEHICLETYPE_NAME")
     private String vehicleTypeName;
 
+    public VehicleType() {
+    }
+
     public VehicleType(String vehicleTypeName) {
         this.vehicleTypeName = vehicleTypeName;
     }

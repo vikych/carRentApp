@@ -14,6 +14,9 @@ public class Transmission {
     @Column(name = "TRANSMISSION_NAME")
     private String transmissionName;
 
+    public Transmission() {
+    }
+
     public Transmission(String transmissionName) {
         this.transmissionName = transmissionName;
     }

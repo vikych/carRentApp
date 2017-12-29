@@ -18,6 +18,9 @@ public class Model {
     @Column(name = "MODEL_NAME")
     private String modelName;
 
+    public Model() {
+    }
+
     public Model(Manufacturer manufacturerFk, String modelName) {
         this.manufacturerFk = manufacturerFk;
         this.modelName = modelName;

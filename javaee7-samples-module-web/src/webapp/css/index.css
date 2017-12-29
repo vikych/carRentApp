@@ -8,19 +8,19 @@ display: inline-block;
 margin: 0px;
 }
 
-.socialicon>li{
+.socialicon > li{
 float: left;
 padding-top: 2px;
 
 }
 
-.socialicon>li>a{
+.socialicon > li > a{
 padding-right: 10px;
 color: #fff;
 text-decoration: none;
 }
 
-.socialicon>li>a:hover{
+.socialicon > li > a:hover{
 	color: #C59E47;
 }
  
@@ -33,17 +33,34 @@ text-decoration: none;
 	padding-left: 1291px;
 }
 
-.logreg>li{
+.logreg > li{
 	float: left;
 }
 
-.logreg>li>a{
+.logreg > li > a{
 	text-decoration: none;
 	color: #E7E7E7;
 	padding-right: 6px;
 }
-.logreg>li>a:hover{
+
+.logreg > li > a:hover{
 	color:#C59E47;
+}
+
+.greetings {
+list-style-type: none;
+ 	display: inline-block;
+	font-size: 22pt;
+	color: white;
+	margin-bottom: 0px;
+	padding-left: 629px;
+}
+
+.greetings > li {
+	text-decoration: none;
+	color: white;
+	padding-right: 6px;
+	float: left;
 }
 
 #navbarontop{

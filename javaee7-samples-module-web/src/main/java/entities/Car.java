@@ -45,9 +45,8 @@ public class Car {
     public Car() {
     }
 
-    public Car(int carPk, String registrationNumber, Model model, int year, VehicleType vehicletype, Transmission transmission,
+    public Car(String registrationNumber, Model model, int year, VehicleType vehicletype, Transmission transmission,
                String color, int price, Blob image, boolean available) {
-        this.carPk = carPk;
         this.registrationNumber = registrationNumber;
         this.model = model;
         this.year = year;

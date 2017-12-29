@@ -1,13 +1,24 @@
 package entities;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "MODEL")
 public class Model {
 
+    @Id
+    @Column(name="MODEL_PK")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int modelPk;
-    private int manufacturerFk;
+
+    @OneToOne
+    @JoinColumn(name = "MANUFACTURER_FK")
+    private Manufacturer manufacturerFk;
+
+    @Column(name = "MODEL_NAME")
     private String modelName;
 
-    public Model(int modelPk, int manufacturerFk, String modelName) {
-        this.modelPk = modelPk;
+    public Model(Manufacturer manufacturerFk, String modelName) {
         this.manufacturerFk = manufacturerFk;
         this.modelName = modelName;
     }
@@ -20,11 +31,11 @@ public class Model {
         this.modelPk = modelPk;
     }
 
-    public int getManufacturerFk() {
+    public Manufacturer getManufacturerFk() {
         return manufacturerFk;
     }
 
-    public void setManufacturerFk(int manufacturerFk) {
+    public void setManufacturerFk(Manufacturer manufacturerFk) {
         this.manufacturerFk = manufacturerFk;
     }
 
@@ -51,7 +62,7 @@ public class Model {
     @Override
     public int hashCode() {
         int result = modelPk;
-        result = 31 * result + manufacturerFk;
+        result = 31 * result + (manufacturerFk != null ? manufacturerFk.hashCode() : 0);
         result = 31 * result + (modelName != null ? modelName.hashCode() : 0);
         return result;
     }

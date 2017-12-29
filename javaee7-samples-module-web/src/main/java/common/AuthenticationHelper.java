@@ -17,7 +17,7 @@ public class AuthenticationHelper {
             while (res.next()) {
                 String usernameFromDB = res.getString(1);
                 String passwordFromDB = res.getString(2);
-                if (username.contentEquals(usernameFromDB) && password.contentEquals(passwordFromDB)) {
+                if (username.equalsIgnoreCase(usernameFromDB) && password.contentEquals(passwordFromDB)) {
                     ConnectionProvider.closeConnection(connection);
                     return true;
                 }

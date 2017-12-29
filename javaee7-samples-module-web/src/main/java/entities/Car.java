@@ -1,30 +1,58 @@
 package entities;
 
+import javax.persistence.*;
 import java.sql.Blob;
 
+@Entity
+@Table(name = "CAR")
 public class Car {
 
+    @Id
+    @Column(name="CAR_PK")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int carPk;
+
+    @Column(name = "REGISTRATION_NUMBER")
     private String registrationNumber;
-    private int modelFk;
+
+    @OneToOne (targetEntity = Model.class, cascade = {CascadeType.ALL},fetch= FetchType.EAGER)
+    @JoinColumn(name = "MODEL_FK")
+    private Model model;
+
+    @Column(name = "YEAR")
     private int year;
-    private int vehicletypeFk;
-    private int transmissionFk;
+
+    @OneToOne (cascade = {CascadeType.ALL},fetch= FetchType.EAGER)
+    @JoinColumn(name = "VEHICLETYPE_FK")
+    private VehicleType vehicletype;
+
+    @OneToOne (cascade = {CascadeType.ALL},fetch= FetchType.EAGER)
+    @JoinColumn(name = "TRANSMISSION_FK")
+    private Transmission transmission;
+
+    @Column(name = "COLOR")
     private String color;
+
+    @Column(name = "PRICE")
     private int price;
+
+    @Column(name = "PHOTO")
     private Blob image;
+
+    @Column(name = "AVAILABLE")
     private boolean available;
 
     public Car() {
     }
 
-    public Car(int carPk, String registrationNumber, int modelFk, int year, int vehicletypeFk, int transmissionFk, String color, int price, Blob image, boolean available) {
+    public Car(int carPk, String registrationNumber, Model model, int year, VehicleType vehicletype, Transmission transmission,
+               String color, int price, Blob image, boolean available) {
         this.carPk = carPk;
         this.registrationNumber = registrationNumber;
-        this.modelFk = modelFk;
+        this.model = model;
         this.year = year;
-        this.vehicletypeFk = vehicletypeFk;
-        this.transmissionFk = transmissionFk;
+        this.vehicletype = vehicletype;
+        this.transmission = transmission;
         this.color = color;
         this.price = price;
         this.image = image;
@@ -47,12 +75,12 @@ public class Car {
         this.registrationNumber = registrationNumber;
     }
 
-    public int getModelFk() {
-        return modelFk;
+    public Model getModel() {
+        return model;
     }
 
-    public void setModelFk(int modelFk) {
-        this.modelFk = modelFk;
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     public int getYear() {
@@ -63,20 +91,20 @@ public class Car {
         this.year = year;
     }
 
-    public int getVehicletypeFk() {
-        return vehicletypeFk;
+    public VehicleType getVehicletype() {
+        return vehicletype;
     }
 
-    public void setVehicletypeFk(int vehicletypeFk) {
-        this.vehicletypeFk = vehicletypeFk;
+    public void setVehicletype(VehicleType vehicletype) {
+        this.vehicletype = vehicletype;
     }
 
-    public int getTransmissionFk() {
-        return transmissionFk;
+    public Transmission getTransmission() {
+        return transmission;
     }
 
-    public void setTransmissionFk(int transmissionFk) {
-        this.transmissionFk = transmissionFk;
+    public void setTransmission(Transmission transmission) {
+        this.transmission = transmission;
     }
 
     public String getColor() {
@@ -119,14 +147,14 @@ public class Car {
         Car car = (Car) o;
 
         if (carPk != car.carPk) return false;
-        if (modelFk != car.modelFk) return false;
         if (year != car.year) return false;
-        if (vehicletypeFk != car.vehicletypeFk) return false;
-        if (transmissionFk != car.transmissionFk) return false;
         if (price != car.price) return false;
         if (available != car.available) return false;
         if (registrationNumber != null ? !registrationNumber.equals(car.registrationNumber) : car.registrationNumber != null)
             return false;
+        if (model != null ? !model.equals(car.model) : car.model != null) return false;
+        if (vehicletype != null ? !vehicletype.equals(car.vehicletype) : car.vehicletype != null) return false;
+        if (transmission != null ? !transmission.equals(car.transmission) : car.transmission != null) return false;
         if (color != null ? !color.equals(car.color) : car.color != null) return false;
         return image != null ? image.equals(car.image) : car.image == null;
     }
@@ -135,10 +163,10 @@ public class Car {
     public int hashCode() {
         int result = carPk;
         result = 31 * result + (registrationNumber != null ? registrationNumber.hashCode() : 0);
-        result = 31 * result + modelFk;
+        result = 31 * result + (model != null ? model.hashCode() : 0);
         result = 31 * result + year;
-        result = 31 * result + vehicletypeFk;
-        result = 31 * result + transmissionFk;
+        result = 31 * result + (vehicletype != null ? vehicletype.hashCode() : 0);
+        result = 31 * result + (transmission != null ? transmission.hashCode() : 0);
         result = 31 * result + (color != null ? color.hashCode() : 0);
         result = 31 * result + price;
         result = 31 * result + (image != null ? image.hashCode() : 0);
@@ -151,10 +179,10 @@ public class Car {
         return "Car{" +
                 "carPk=" + carPk +
                 ", registrationNumber='" + registrationNumber + '\'' +
-                ", modelFk=" + modelFk +
+                ", model=" + model +
                 ", year=" + year +
-                ", vehicletypeFk=" + vehicletypeFk +
-                ", transmissionFk=" + transmissionFk +
+                ", vehicletype=" + vehicletype +
+                ", transmission=" + transmission +
                 ", color='" + color + '\'' +
                 ", price=" + price +
                 ", image=" + image +

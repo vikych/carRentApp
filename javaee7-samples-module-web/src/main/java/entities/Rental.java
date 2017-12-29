@@ -1,9 +1,15 @@
 package entities;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "RENTAL")
 public class Rental {
 
+    @Id
+    @Column(name="RENTAL_PK")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int rentalPk;
     private String rentalID;
     private int carFk;

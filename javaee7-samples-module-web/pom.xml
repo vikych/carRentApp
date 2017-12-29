@@ -17,6 +17,8 @@
     <properties>
         <wlp.server.name>javaEE7samples</wlp.server.name>
         <wlp.path>${project.build.directory}/liberty/wlp</wlp.path>
+        <!--<wlp.server.jvm.opts>XX:MaxMetaspaceSize=300m -Xmx400m -Xms50m -Xms200m -server-->
+             <!-- -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=7777</wlp.server.jvm.opts>-->
     </properties>
 
     <dependencies>
@@ -39,6 +41,31 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.38</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-annotations -->
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate</groupId>-->
+            <!--<artifactId>hibernate-annotations</artifactId>-->
+            <!--<version>3.5.6-Final</version>-->
+        <!--</dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.2.12.Final</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.5</version>
         </dependency>
 
     </dependencies>

@@ -1,12 +1,20 @@
 package entities;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "VEHICLETYPE")
 public class VehicleType {
 
+    @Id
+    @Column(name="VEHICLETYPE_PK")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int vehicleTypePk;
+
+    @Column(name = "VEHICLETYPE_NAME")
     private String vehicleTypeName;
 
-    public VehicleType(int vehicleTypePk, String vehicleTypeName) {
-        this.vehicleTypePk = vehicleTypePk;
+    public VehicleType(String vehicleTypeName) {
         this.vehicleTypeName = vehicleTypeName;
     }
 

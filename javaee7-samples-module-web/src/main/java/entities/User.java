@@ -1,19 +1,54 @@
 package entities;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "USER_INFO")
 public class User {
 
+    @Id
+    @Column(name="USER_PK")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int userPk;
+
+    @Column(name = "USER_NAME")
     private String username;
+
+    @Column(name = "PASSWORD")
     private String password;
+
+    @Column(name = "EMAIL")
     private String email;
+
+    @Column(name = "LAST_NAME")
     private String lastName;
+
+    @Column(name = "FISRT_NAME")
     private String firstName;
+
+    @Column(name = "PERSON_ID")
     private String personID;
+
+    @Column(name = "PHONE")
     private String Phone;
+
+    @Column(name = "BLOCKED")
     private boolean blocked;
+
+    @Column(name = "LOGIN_ATTEMPTS")
     private int loginAttempts;
+
+    @Column(name = "DATE_OF_BIRTH")
     private Date dateOfBirth;
+
+    public int getUserPk() {
+        return userPk;
+    }
+
+    public void setUserPk(int userPk) {
+        this.userPk = userPk;
+    }
 
     public String getUsername() {
         return username;

@@ -1,6 +1,14 @@
 package entities;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "LOCATION")
 public class Location {
+
+    @Id
+    @Column(name="LOCATION_PK")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int locationPk;
     private String locationName;
 

@@ -1,12 +1,20 @@
 package entities;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "MANUFACTURER")
 public class Manufacturer {
-    
+
+    @Id
+    @Column(name="MANUFACTURER_PK")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int manufacturerPk;
+
+    @Column(name = "MANUFACTURER_NAME")
     private String manufacturerName;
 
-    public Manufacturer(int manufacturerPk, String manufacturerName) {
-        this.manufacturerPk = manufacturerPk;
+    public Manufacturer(String manufacturerName) {
         this.manufacturerName = manufacturerName;
     }
 

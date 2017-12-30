@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -84,7 +84,7 @@
     <div class="cd-popup" role="alert">
         <div class="cd-popup-container">
             <p>Welcome, <b>${tusername}</b></p>
-            <a class="cd-popup-close img-replace" data-bind="click: $root.function.ClosePopUpWindow">Close</a>
+            <a class="cd-popup-close img-replace" style="cursor:pointer;" data-bind="click: $root.function.ClosePopUpWindow">Close</a>
         </div>
     </div>
 </div>
@@ -93,25 +93,13 @@
 <script type="text/javascript">
     (function () {
         function HomePageViewModel() {
-            debugger;
             var self = this;
             self.function = {
                 GetGreetingMSG: function () {
-                    debugger;
                     $('.cd-popup').addClass('is-visible');
-                    // $.ajax({
-                    //     type: "GET",
-                    //     url: "/greetings",
-                    //     success: function (res) {
-                    //         debugger;
-                    //         event.preventDefault();
-                    //         self.username(res);
-                    //         $('.cd-popup').addClass('is-visible');
-                    //     }
-                    // });
                 },
                 ClosePopUpWindow: function () {
-                    $(this).removeClass('is-visible');
+                    $('.cd-popup').removeClass('is-visible');
                 }
             }
         }
@@ -119,5 +107,4 @@
         model.function.GetGreetingMSG();
         ko.applyBindings(model, document.getElementById("HomePageContainer"));
     })();
-
 </script>

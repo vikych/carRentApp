@@ -19,7 +19,7 @@ public class CarServiceTest {
     }
 
     public Car createCar(String registrationNumber, Model model, int year, VehicleType vehicletype, Transmission transmission,
-                         String color, int price, Blob image, boolean available) {
+                         String color, int price, String image, boolean available) {
         Car car = new Car();
 //        car.setCarPk(carPk);
         car.setRegistrationNumber(registrationNumber);

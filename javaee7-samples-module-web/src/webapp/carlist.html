@@ -101,6 +101,7 @@
                                 for (var car in res) {
                                     debugger;
                                     self.carArray.push({
+                                        CarImage: res[car].image,
                                         CarManufacturerName: res[car].model.manufacturerFk.manufacturerName,
                                         CarModel: res[car].modelName,
                                         CarYear: res[car].year,

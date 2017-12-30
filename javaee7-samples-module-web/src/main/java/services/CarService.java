@@ -30,7 +30,7 @@ public class CarService implements CarDAO {
             ps.setInt(5, car.getTransmission().getTransmissionPk());
             ps.setString(6, car.getColor());
             ps.setInt(7, car.getPrice());
-            ps.setBlob(8, car.getImage());
+            ps.setString(8, car.getImage());
             ps.setBoolean(9, car.isAvailable());
 
             if (ps.executeUpdate() > 0) {
@@ -72,7 +72,7 @@ public class CarService implements CarDAO {
                 car.setTransmission(transmissionService.getTransmissionByPk(resultSet.getInt("TRANSMISSION_FK")));
                 car.setColor(resultSet.getString("COLOR"));
                 car.setPrice(resultSet.getInt("PRICE"));
-                car.setImage(resultSet.getBlob("PHOTO"));
+                car.setImage(resultSet.getString("PHOTO"));
                 car.setAvailable(resultSet.getBoolean("AVAILABLE"));
 
                 cars.add(car);
@@ -124,7 +124,7 @@ public class CarService implements CarDAO {
             car.setTransmission(transmissionService.getTransmissionByPk(resultSet.getInt("TRANSMISSION_FK")));
             car.setColor(resultSet.getString("COLOR"));
             car.setPrice(resultSet.getInt("PRICE"));
-            car.setImage(resultSet.getBlob("PHOTO"));
+            car.setImage(resultSet.getString("PHOTO"));
             car.setAvailable(resultSet.getBoolean("AVAILABLE"));
 
         } catch (SQLException e) {
@@ -159,7 +159,7 @@ public class CarService implements CarDAO {
             ps.setInt(5, car.getTransmission().getTransmissionPk());
             ps.setString(6, car.getColor());
             ps.setInt(7, car.getPrice());
-            ps.setBlob(8, car.getImage());
+            ps.setString(8, car.getImage());
             ps.setBoolean(9, car.isAvailable());
             ps.setInt(10, car.getCarPk());
 

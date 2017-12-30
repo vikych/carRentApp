@@ -18,13 +18,11 @@ import java.util.List;
 @WebServlet("/car")
 public class CarServlet extends HttpServlet {
 
-    private CarService service;
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carRentPU");
         EntityManager em = emf.createEntityManager();
-        service = new CarService(em);
+        CarService service = new CarService(em);
         List<Car> list = service.findAllCars();
 
         String json = new Gson().toJson(list);

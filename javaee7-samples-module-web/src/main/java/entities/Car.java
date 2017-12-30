@@ -37,7 +37,7 @@ public class Car {
     private int price;
 
     @Column(name = "PHOTO")
-    private Blob image;
+    private String image;
 
     @Column(name = "AVAILABLE")
     private boolean available;
@@ -46,7 +46,7 @@ public class Car {
     }
 
     public Car(String registrationNumber, Model model, int year, VehicleType vehicletype, Transmission transmission,
-               String color, int price, Blob image, boolean available) {
+               String color, int price, String image, boolean available) {
         this.registrationNumber = registrationNumber;
         this.model = model;
         this.year = year;
@@ -122,11 +122,11 @@ public class Car {
         this.price = price;
     }
 
-    public Blob getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

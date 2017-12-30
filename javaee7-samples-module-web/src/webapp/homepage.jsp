@@ -22,7 +22,6 @@
 			<ul class="logreg">
 			<li>Give us a call : +371 29846263 </li>
 			</ul>
-			
 			<ul class="greetings">
             <li>Welcome, <b>${tusername}</b></li>
             </ul>

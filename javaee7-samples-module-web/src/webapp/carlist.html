@@ -8,10 +8,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
     <script src="js/homepage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.js"></script>
     <script type='text/javascript' src='js/knockout-3.4.2.js'></script>
     <script type="text/javascript" src="js/numeric/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="js/numeric/jquery.numeric.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Abril Fatface' rel='stylesheet'>
+
 </head>
 <body>
 <div id="CarListContainer">
@@ -116,6 +118,8 @@
             </div>
         </div>
     </div>
+    <div class="cd-popup" role="alert">
+    </div>
 </div>
 </body>
 </html>
@@ -130,6 +134,9 @@
                         type: "GET",
                         url: "/car",
                         success: function (res) {
+                            debugger;
+                            $('.cd-popup').addClass('is-visible');
+                            $('.cd-popup').after(new Spinner({ color: '#FFFFFF' }).spin().el);
                             if (res.length > 0) {
                                 for (var car in res) {
                                     debugger;
@@ -143,6 +150,8 @@
                                         CarColor: res[car].color
                                     });
                                 }
+
+                                $('.cd-popup').removeClass('is-visible');
                             }
                         }
                     });

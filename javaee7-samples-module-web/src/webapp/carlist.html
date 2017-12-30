@@ -8,116 +8,121 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
     <script src="js/homepage.js"></script>
-    <script type='text/javascript' src='js/knockout-3.4.2.js'></script>
     <script type="text/javascript" src="js/numeric/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="js/numeric/jquery.numeric.js"></script>
+    <script type='text/javascript' src='js/knockout-3.4.2.js'></script>
 </head>
 <body>
 <div id="CarListContainer">
-    <div class="allcontain">
-        <div class="header">
-            <ul class="socialicon">
-                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-            </ul>
-            <ul class="logreg">
-                <li>Give us a call : +371 29846263</li>
+<div class="allcontain">
+    <div class="header">
+        <ul class="socialicon">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+        </ul>
+        <ul class="logreg">
+            <li>Give us a call : +371 29846263 </li>
+        </ul>
+    </div>
+    <nav class="topnavbar navbar-default topnav">
+        <div class="collapse navbar-collapse" id="upmenu">
+            <ul class="nav navbar-nav" id="navbarontop">
+                <li class="active"><a href="homepage.html">HOME</a></li>
+                <li class="active"><a href="carlist.html">CAR LIST</a></li>
+                <li class="active"><a href="rentacar.html">RENT A CAR</a></li>
+                <li class="active"><a href="rentalhistory.html">RENTAL HISTORY</a></li>
+                <li class="active"><a href="editprofile.html">EDIT PROFILE</a></li>
             </ul>
         </div>
-        <nav class="topnavbar navbar-default topnav">
-            <div class="collapse navbar-collapse" id="upmenu">
-                <ul class="nav navbar-nav" id="navbarontop">
-                    <li class="active"><a href="homepage.html">HOME</a></li>
-                    <li class="active"><a href="carlist.html">CAR LIST</a></li>
-                    <li class="active"><a href="rentacar.html">RENT A CAR</a></li>
-                    <li class="active"><a href="rentalhistory.html">RENTAL HISTORY</a></li>
-                    <li class="active"><a href="editprofile.html">EDIT PROFILE</a></li>
-                </ul>
+    </nav>
+    <nav class="navbar navbar-default car-list-nav">
+        <div class="collapse navbar-collapse" id="navbarmidle">
+            <div class="searchtxt">
+                <h1>CAR SEARCH</h1>
             </div>
-        </nav>
-        <nav class="navbar navbar-default car-list-nav">
-            <div class="collapse navbar-collapse" id="navbarmidle">
-                <div class="searchtxt">
-                    <h1>CAR SEARCH</h1>
+            <form class="navbar-form navbar-left searchformmargin" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control searchform" placeholder="Manufacturer">
                 </div>
-                <form class="navbar-form navbar-left searchformmargin" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control searchform" placeholder="Manufacturer">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control searchform" placeholder="Model">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control searchform inputYear" placeholder="Year">
-                    </div>
-                </form>
-                <ul class="nav navbar-nav navbarborder">
-                    <li class="li-search">
-                        <button class="searchbutton"><span class="glyphicon glyphicon-search "></span></button>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+                <div class="form-group">
+                    <input type="text" class="form-control searchform" placeholder="Model">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control searchform inputYear" placeholder="Year">
+                </div>
+            </form>
+            <ul class="nav navbar-nav navbarborder">
+                <li class="li-search"> <button class="searchbutton"><span class="glyphicon glyphicon-search "></span></button></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div data-bind = "foreach: {data: $root.carArray, as :'$ca' }">
+    <div class="row">
+        <img></img>
     </div>
-    <div data-bind="foreach: {data: $root.carArray, as :'$ca' }">
-        <div class="row">
-            <img></img>
-        </div>
-        <div class="row">
-            <table>
-                <tr>
-                    <td data-bind="text: $ca.CarManufacturerName"></td>
-                    <td data-bind="text: $ca.CarModel"></td>
-                    <td data-bind="text: $ca.CarYear"></td>
-                </tr>
-            </table>
-        </div>
-        <div class="row">
-            <table>
-                <tr>
-                    <td data-bind="text: $ca.Price"></td>
-                    <td data-bind="text: $ca.CarRegistartionNumber"></td>
-                    <td data-bind="text: $ca.CarColor"></td>
-                </tr>
-            </table>
-        </div>
+    <div class="row">
+        <table>
+            <tr>
+                <td data-bind="text: $ca.CarManufacturerName"></td>
+                <td data-bind="text: $ca.CarModel"></td>
+                <td data-bind="text: $ca.CarYear"></td>
+            </tr>
+        </table>
     </div>
+    <div class="row">
+        <table>
+            <tr>
+                <td data-bind="text: $ca.Price"></td>
+                <td data-bind="text: $ca.CarRegistartionNumber"></td>
+                <td data-bind="text: $ca.CarColor"></td>
+            </tr>
+        </table>
+    </div>
+</div>
 </div>
 </body>
 </html>
 <script type="text/javascript">
-    (function () {
-        function CarListViewModel() {
-            var self = this;
-            self.carArray = ko.observableArray([]);
-            self.function = {
-                getCarList: function () {
-                    $.ajax({
-                        type: "GET",
-                        url: "/car",
-                        success: function (res) {
-                            if (res.length > 0) {
-                                for (var car in res) {
-                                    debugger;
-                                    self.carArray.push({
-                                        CarManufacturerName: res[car].model.manufacturerFk.manufacturerName,
-                                        CarModel: res[car].modelName,
-                                        CarYear: res[car].year,
-                                        Price: res[car].price,
-                                        CarRegistartionNumber: res[car].registrationNumber,
-                                        CarColor: res[car].color
-                                    });
-                                }
-                            }
+(function(){
+function CarListViewModel() {
+             var self = this;
+             <!--self.CarManufacturerName = ko.observable("");-->
+             <!--self.CarModel = ko.observable("");-->
+             <!--self.CarYear = ko.observable("");-->
+             <!--self.Price = ko.observable("");-->
+             <!--self.CarRegistrationNumber = ko.observable("");-->
+             <!--self.CarColor = ko.observable("");-->
+             self.carArray = ko.observableArray ([]);
+             self.function = {
+                getCarList: function(){
+                debugger;
+                $.ajax({
+                    type: "GET",
+                    url: "/car",
+                    success: function (res) {
+                        debugger;
+                        if(res.length > 0){
+                        for (car in res) {
+                             carArray.push({
+                              CarManufacturerName: carManufacturerName,
+                              CarModel: carModel,
+                              CarYear: carYear,
+                              Price: price,
+                              CarRegistartionNumber: carRegistartionNumber,
+                              CarColor: carColor
+                             });
+                           }
                         }
-                    });
+                    }
+                });
                 }
-            }
-        }
+             }
+}
 
-        var viewModel = new CarListViewModel();
-        viewModel.function.getCarList();
-        ko.applyBindings(viewModel, document.getElementById("CarListContainer"));
-    })();
-</script>
+      var viewModel = new CarListViewModel ();
+      viewModel.function.getCarList();
+      ko.applyBindings(viewModel, document.getElementById("CarListContainer"));
+})();
+ </script>

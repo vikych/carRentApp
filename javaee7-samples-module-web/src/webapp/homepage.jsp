@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -22,6 +22,10 @@
 			<ul class="logreg">
 			<li>Give us a call : +371 29846263 </li>
 			</ul>
+			
+			<ul class="greetings">
+            <li>Welcome, <b>${tusername}</b></li>
+            </ul>
 	</div>
 	<nav class="topnavbar navbar-default topnav">
 		<div class="collapse navbar-collapse" id="upmenu">
@@ -52,7 +56,7 @@
 			</div>
 				<div class="item">
 				<img src="css/image/car_slider_5.jpg" alt="benz">
-			</div>			
+			</div>
 		</div>
 		<nav class="navbar navbar-default midle-nav">
 			<div class="collapse navbar-collapse" id="navbarmidle">

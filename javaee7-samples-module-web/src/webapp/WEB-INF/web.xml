@@ -49,14 +49,4 @@
         <url-pattern>/registration</url-pattern>
     </servlet-mapping>
 
-    <servlet>
-        <servlet-name>GreetingsServlet</servlet-name>
-        <servlet-class>servlets.GreetingsServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>GreetingsServlet</servlet-name>
-        <url-pattern>/greetings</url-pattern>
-    </servlet-mapping>
-
 </web-app>

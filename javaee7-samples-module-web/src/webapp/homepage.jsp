@@ -12,7 +12,7 @@
     <script type="text/javascript" src="js/numeric/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="js/numeric/jquery.numeric.js"></script>
 </head>
-<body data-bind="click: $root.function.ClosePopUpWindow">
+<body>
 <div id="HomePageContainer">
     <div class="allcontain">
         <div class="header">
@@ -81,7 +81,7 @@
             </nav>
         </div>
     </div>
-    <div class="cd-popup" role="alert">
+    <div class="cd-popup" role="alert" data-bind="click: $root.function.ClosePopUpWindow">
         <div class="cd-popup-container">
             <p>Welcome, <b>${tusername}</b></p>
             <a class="cd-popup-close img-replace" style="cursor:pointer;" data-bind="click: $root.function.ClosePopUpWindow">Close</a>

@@ -14,6 +14,9 @@ public class Manufacturer {
     @Column(name = "MANUFACTURER_NAME")
     private String manufacturerName;
 
+    public Manufacturer() {
+    }
+
     public Manufacturer(String manufacturerName) {
         this.manufacturerName = manufacturerName;
     }

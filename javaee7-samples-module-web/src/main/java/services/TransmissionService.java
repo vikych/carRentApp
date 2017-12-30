@@ -11,9 +11,9 @@ import java.sql.SQLException;
 
 public class TransmissionService {
 
-    private Connection connection = ConnectionProvider.jdbcConnection();
 
     public Transmission getTransmissionByPk(int transmissionPk) throws SQLException {
+        Connection connection = ConnectionProvider.jdbcConnection();
         PreparedStatement ps = null;
         String table = "TRANSMISSION";
 

@@ -8,7 +8,7 @@ import entities.VehicleType;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.sql.Blob;
-import java.util.Collection;
+import java.util.List;
 
 public class CarServiceTest {
 
@@ -53,8 +53,8 @@ public class CarServiceTest {
         return em.find(Car.class, carPk);
     }
 
-    public Collection<Car> findAllCars() {
+    public List<Car> findAllCars() {
         Query query = em.createQuery("SELECT * FROM Car");
-        return (Collection<Car>) query.getResultList();
+        return (List<Car>) query.getResultList();
     }
 }

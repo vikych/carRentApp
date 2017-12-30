@@ -7,11 +7,13 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
-    <script src="/js/homepage.js"></script>
+    <script src="js/homepage.js"></script>
     <script type="text/javascript" src="js/numeric/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="js/numeric/jquery.numeric.js"></script>
+    <script type='text/javascript' src='js/knockout-3.4.2.js'></script>
 </head>
 <body>
+<div id="CarListContainer">
 <div class="allcontain">
     <div class="header">
         <ul class="socialicon">
@@ -56,5 +58,59 @@
         </div>
     </nav>
 </div>
+<div data-bind = "foreach: {data: $root.carArray, as :'$ca' }">
+    <div class="row">
+        <img></img>
+    </div>
+    <div class="row">
+        <table>
+            <tr>
+                <td data-bind="text: $ca.CarManufacturerName"></td>
+                <td data-bind="text: $ca.CarModel"></td>
+                <td data-bind="text: $ca.CarYear"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <table>
+            <tr>
+                <td data-bind="text: $ca.Price"></td>
+                <td data-bind="text: $ca.CarRegistartionNumber"></td>
+                <td data-bind="text: $ca.CarColor"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
 </body>
 </html>
+<script type="text/javascript">
+(function(){
+function CarListViewModel() {
+             var self = this;
+             <!--self.CarManufacturerName = ko.observable("");-->
+             <!--self.CarModel = ko.observable("");-->
+             <!--self.CarYear = ko.observable("");-->
+             <!--self.Price = ko.observable("");-->
+             <!--self.CarRegistrationNumber = ko.observable("");-->
+             <!--self.CarColor = ko.observable("");-->
+             self.carArray = ko.observableArray ([]);
+             self.function = {
+                getCarList: function(){
+                debugger;
+                $.ajax({
+                    type: "GET",
+                    url: "/car",
+                    success: function (res) {
+                        debugger;
+                    }
+                });
+                }
+             }
+}
+
+      var viewModel = new CarListViewModel ();
+      viewModel.function.getCarList();
+      ko.applyBindings(viewModel, document.getElementById("CarListContainer"));
+})();
+ </script>

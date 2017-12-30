@@ -4,24 +4,21 @@ import dao.CarDAO;
 import dbconnection.ConnectionProvider;
 import entities.Car;
 
-import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarService implements CarDAO {
 
-    private Connection connection = ConnectionProvider.jdbcConnection();
-
-    @Inject
-    private ModelService modelService;
-    @Inject
-    private VehicleTypeService vehicleTypeService;
-    @Inject
-    private TransmissionService transmissionService;
+    private ModelService modelService = new ModelService();
+    private VehicleTypeService vehicleTypeService = new VehicleTypeService();
+    private TransmissionService transmissionService = new TransmissionService();
 
     @Override
     public boolean addCar(Car car) {
+        Connection connection = ConnectionProvider.jdbcConnection();
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO car(REGISTRATION_NUMBER, MODEL_FK, YEAR, "
                     + "VEHICLETYPE_FK, TRANSMISSION_FK, COLOR, PRICE, PHOTO, AVAILABLE) VALUES (?,?,?,?,?,?,?,?)");
@@ -54,6 +51,8 @@ public class CarService implements CarDAO {
 
     @Override
     public List<Car> getCars() throws SQLException {
+        Connection connection = ConnectionProvider.jdbcConnection();
+
         List<Car> cars = new ArrayList<>();
 
         String sql = "SELECT CAR_PK, REGISTRATION_NUMBER, MODEL_FK, YEAR, VEHICLETYPE_FK, TRANSMISSION_FK, COLOR, "
@@ -91,8 +90,21 @@ public class CarService implements CarDAO {
         return cars;
     }
 
+    protected EntityManager em;
+
+    public CarService(EntityManager em) {
+        this.em = em;
+    }
+
+    public List<Car> findAllCars() {
+        Query query = em.createQuery("From Car");
+        return (List<Car>) query.getResultList();
+    }
+
     @Override
     public Car getCarByPk(int carPk) throws SQLException {
+        Connection connection = ConnectionProvider.jdbcConnection();
+
         PreparedStatement ps = null;
 
         String sql = "SELECT CAR_PK, REGISTRATION_NUMBER, MODEL_FK, YEAR, VEHICLETYPE_FK, TRANSMISSION_FK, COLOR, " +
@@ -130,6 +142,8 @@ public class CarService implements CarDAO {
 
     @Override
     public void updateCar(Car car) throws SQLException {
+        Connection connection = ConnectionProvider.jdbcConnection();
+
         PreparedStatement ps = null;
 
         String sql = "UPDATE CAR SET REGISTRATION_NUMBER=?, MODEL_FK=?, YEAR=?, VEHICLETYPE_FK=?, TRANSMISSION_FK=?, " +
@@ -164,6 +178,8 @@ public class CarService implements CarDAO {
 
     @Override
     public void removeCar(Car car) throws SQLException {
+        Connection connection = ConnectionProvider.jdbcConnection();
+
         PreparedStatement ps = null;
 
         String sql = "DELETE FROM CAR WHERE CAR_PK=?";

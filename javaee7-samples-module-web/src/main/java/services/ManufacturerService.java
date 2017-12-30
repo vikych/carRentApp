@@ -1,32 +1,29 @@
 package services;
 
 import dbconnection.ConnectionProvider;
-import entities.Model;
-import entities.VehicleType;
+import entities.Manufacturer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class VehicleTypeService {
+public class ManufacturerService {
 
-    public VehicleType getVehicleTypeByPk(int vehicleTypePk) throws SQLException {
+    public Manufacturer getManufacturerByPk(int manufacturerPk) throws SQLException {
         Connection connection = ConnectionProvider.jdbcConnection();
         PreparedStatement ps = null;
-        String table = "VEHICLETYPE";
 
-        String sql = "SELECT VEHICLETYPE_PK, VEHICLETYPE_NAME FROM ? WHERE VEHICLETYPE_PK=?";
+        String sql = "SELECT MANUFACTURER_PK, MANUFACTURER_NAME FROM MANUFACTURER WHERE MANUFACTURER_PK=?";
 
-        VehicleType vehicleType = new VehicleType();
+        Manufacturer manufacturer = new Manufacturer();
         try {
             ps = connection.prepareStatement(sql);
-            ps.setString(1, table);
-            ps.setInt(2, vehicleTypePk);
+            ps.setInt(1, manufacturerPk);
             ResultSet resultSet = ps.executeQuery();
 
-            vehicleType.setVehicleTypePk(resultSet.getInt("VEHICLETYPE_PK"));
-            vehicleType.setVehicleTypeName(resultSet.getString("VEHICLETYPE_NAME"));
+            manufacturer.setManufacturerPk(resultSet.getInt("MANUFACTURER_PK"));
+            manufacturer.setManufacturerName(resultSet.getString("MANUFACTURER_NAME"));
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -37,6 +34,6 @@ public class VehicleTypeService {
                 connection.close();
             }
         }
-        return vehicleType;
+        return manufacturer;
     }
 }

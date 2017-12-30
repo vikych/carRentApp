@@ -27,38 +27,31 @@ public class SearchServlet extends HttpServlet {
 
         List<Car> list = new ArrayList<>();
 
-        String manufacturer = req.getParameter("manufacturer");
-        String model = req.getParameter("model");
-        String yearSt = req.getParameter("year");
-        String color = req.getParameter("color");
-        int year = Integer.valueOf(yearSt);
-        
-        for (Car car : service.findAllCars()) {
-            if (car.getYear() == year) {
-                list.add(car);
-            }
-            if (car.getModel().getModelName().equalsIgnoreCase(model)) {
-                if (!list.contains(car)) {
-                    list.add(car);
-                }
-            }
-            if (car.getModel().getManufacturerFk().getManufacturerName().equalsIgnoreCase(manufacturer)) {
-                if (!list.contains(car)) {
-                    list.add(car);
-                }
-            }
-
-            if (car.getColor().equalsIgnoreCase(color)) {
-                if (!list.contains(car)) {
-                    list.add(car);
-                }
-            }
+        String manufacturer = req.getParameter("Manufacturer");
+        String model = req.getParameter("Model");
+        String yearSt = req.getParameter("Year");
+        String color = req.getParameter("Color");
+        int year = -1;
+        if (!yearSt.isEmpty()) {
+            year = Integer.valueOf(yearSt);
         }
 
-        String json = new Gson().toJson(list);
+        for (Car car : service.findAllCars()) {
+            if (car.getYear() == year
+                    || car.getModel().getModelName().equalsIgnoreCase(model)
+                    || car.getModel().getManufacturerFk().getManufacturerName().equalsIgnoreCase(manufacturer)
+                    || car.getColor().equalsIgnoreCase(color)) {
+                list.add(car);
+            }
+        }
+        String json;
+        if (manufacturer.isEmpty() && model.isEmpty() && color.isEmpty() && yearSt.isEmpty()) {
+            json = new Gson().toJson(service.findAllCars());
+        } else {
+            json = new Gson().toJson(list);
+        }
 
         resp.setContentType("application/json");
-
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(json);
     }

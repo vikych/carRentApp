@@ -30,6 +30,7 @@ public class CarServlet extends HttpServlet {
         String json = new Gson().toJson(list);
 
         resp.setContentType("application/json");
+
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(json);
     }

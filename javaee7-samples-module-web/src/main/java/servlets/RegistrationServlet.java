@@ -37,7 +37,13 @@ public class RegistrationServlet extends HttpServlet {
         user.setEmail(email);
 
         if (service.addUser(user)) {
-            RequestDispatcher dispatcher = req.getRequestDispatcher("homepage.html");
+            try {
+                req.setAttribute("tusername", username);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            RequestDispatcher dispatcher = req.getRequestDispatcher("homepage.jsp");
             dispatcher.forward(req, response);
         } else {
             RequestDispatcher dispatcher = req.getRequestDispatcher("registration_errorpage.html");

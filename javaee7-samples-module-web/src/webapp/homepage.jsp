@@ -83,7 +83,7 @@
     </div>
     <div class="cd-popup" role="alert" data-bind="click: $root.function.ClosePopUpWindow">
         <div class="cd-popup-container">
-            <p>Welcome, <b>${tusername}</b></p>
+            <p>Welcome, <b>${tusername}!</b></p>
             <a class="cd-popup-close img-replace" style="cursor:pointer;" data-bind="click: $root.function.ClosePopUpWindow">Close</a>
         </div>
     </div>

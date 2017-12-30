@@ -103,6 +103,18 @@ function CarListViewModel() {
                     url: "/car",
                     success: function (res) {
                         debugger;
+                        if(res.length > 0){
+                        for (car in res) {
+                             carArray.push({
+                              CarManufacturerName: carManufacturerName,
+                              CarModel: carModel,
+                              CarYear: carYear,
+                              Price: price,
+                              CarRegistartionNumber: carRegistartionNumber,
+                              CarColor: carColor
+                             });
+                           }
+                        }
                     }
                 });
                 }

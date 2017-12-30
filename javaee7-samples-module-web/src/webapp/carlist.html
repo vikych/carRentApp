@@ -46,18 +46,21 @@
                 </div>
                 <form class="navbar-form navbar-left searchformmargin" role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control searchform" placeholder="Manufacturer">
+                        <input type="text" class="form-control searchform" data-bind="value: $data.Manufacturer" placeholder="Manufacturer">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control searchform" placeholder="Model">
+                        <input type="text" class="form-control searchform" data-bind="value: $data.Model" placeholder="Model">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control searchform inputYear" placeholder="Year">
+                        <input type="text" class="form-control searchform inputYear" data-bind="value: $data.Year" placeholder="Year">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control searchform" data-bind="value: $data.Color" placeholder="Color">
                     </div>
                 </form>
                 <ul class="nav navbar-nav navbarborder">
                     <li class="li-search">
-                        <button class="searchbutton"><span class="glyphicon glyphicon-search "></span></button>
+                        <button class="searchbutton" data-bind="click: $root.function.SearchCars" ><span class="glyphicon glyphicon-search"></span></button>
                     </li>
                 </ul>
             </div>
@@ -119,6 +122,7 @@
         </div>
     </div>
     <div class="cd-popup" role="alert">
+        <span class="loader"></span>
     </div>
 </div>
 </body>
@@ -127,6 +131,10 @@
     (function () {
         function CarListViewModel() {
             var self = this;
+            self.Manufacturer = ko.observable("");
+            self.Model = ko.observable("");
+            self.Year = ko.observable("");
+            self.Color = ko.observable("");
             self.carArray = ko.observableArray([]);
             self.function = {
                 getCarList: function () {
@@ -134,12 +142,39 @@
                         type: "GET",
                         url: "/car",
                         success: function (res) {
-                            debugger;
                             $('.cd-popup').addClass('is-visible');
-                            $('.cd-popup').after(new Spinner({ color: '#FFFFFF' }).spin().el);
+                            $('.loader').after(new Spinner({ color: '#FFFFFF' }).spin().el);
+                            if (res.length > 0) {
+                                for (var car in res) {
+                                    self.carArray.push({
+                                        CarImage: res[car].image,
+                                        CarManufacturerName: res[car].model.manufacturerFk.manufacturerName,
+                                        CarModel: res[car].modelName,
+                                        CarYear: res[car].year,
+                                        Price: res[car].price + ' €',
+                                        CarRegistartionNumber: res[car].registrationNumber,
+                                        CarColor: res[car].color
+                                    });
+                                }
+                                $('.loader').hide().empty();
+                                $('.cd-popup').removeClass('is-visible');
+                            }
+                        }
+                    });
+                },
+                SearchCars: function () {
+                    debugger;
+                    $('.cd-popup').addClass('is-visible');
+                    $('.loader').after(new Spinner({ color: '#FFFFFF' }).spin().el);
+                    $.ajax({
+                        type: "POST",
+                        url: "/searchCar",
+                        data: {Manufacturer:  self.Manufacturer(), Model: self.Model(), Year: self.Year(), Color: self.Color()},
+                        success: function (res) {
                             if (res.length > 0) {
                                 for (var car in res) {
                                     debugger;
+                                    self.carArray([]);
                                     self.carArray.push({
                                         CarImage: res[car].image,
                                         CarManufacturerName: res[car].model.manufacturerFk.manufacturerName,
@@ -150,7 +185,7 @@
                                         CarColor: res[car].color
                                     });
                                 }
-
+                                $('.loader').hide().empty();
                                 $('.cd-popup').removeClass('is-visible');
                             }
                         }

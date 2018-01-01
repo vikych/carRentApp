@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Model {
 
     @Id
-    @Column(name="MODEL_PK")
+    @Column(name = "MODEL_PK")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int modelPk;
 

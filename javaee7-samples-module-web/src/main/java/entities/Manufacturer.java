@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Manufacturer {
 
     @Id
-    @Column(name="MANUFACTURER_PK")
+    @Column(name = "MANUFACTURER_PK")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int manufacturerPk;
 

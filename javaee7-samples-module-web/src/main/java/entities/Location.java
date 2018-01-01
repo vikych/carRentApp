@@ -7,9 +7,10 @@ import javax.persistence.*;
 public class Location {
 
     @Id
-    @Column(name="LOCATION_PK")
+    @Column(name = "LOCATION_PK")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int locationPk;
+    @Column(name = "LOCATION_NAME")
     private String locationName;
 
     public Location(int locationPk, String locationName) {

@@ -74,7 +74,7 @@
                     </form>
                     <ul class="nav navbar-nav navbarborder">
                         <li class="li-search">
-                            <button class="searchbutton"><span class="glyphicon glyphicon-search "></span></button>
+                            <button class="searchbutton" data-bind="click: $root.function.SearchCars"><span class="glyphicon glyphicon-search "></span></button>
                         </li>
                     </ul>
                 </div>
@@ -100,6 +100,9 @@
                 },
                 ClosePopUpWindow: function () {
                     $('.cd-popup').removeClass('is-visible');
+                },
+                SearchCars: function () {
+                
                 }
             }
         }

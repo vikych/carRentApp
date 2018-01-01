@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet("/searchCar")
 public class SearchServlet extends HttpServlet {
@@ -25,31 +25,38 @@ public class SearchServlet extends HttpServlet {
         EntityManager em = emf.createEntityManager();
         CarService service = new CarService(em);
 
-        List<Car> list = new ArrayList<>();
-
         String manufacturer = req.getParameter("Manufacturer");
         String model = req.getParameter("Model");
         String yearSt = req.getParameter("Year");
         String color = req.getParameter("Color");
-        int year = -1;
-        if (!yearSt.isEmpty()) {
-            year = Integer.valueOf(yearSt);
+        if (yearSt.isEmpty()) {
+            yearSt = "-1";
+        }
+        int year = Integer.valueOf(yearSt);
+
+        List<Car> list = service.findAllCars();
+        if (year != -1) {
+            list = list.stream()
+                    .filter(car -> car.getYear() == year)
+                    .collect(Collectors.toList());
+        }
+        if (!model.isEmpty()) {
+            list = list.stream()
+                    .filter(car -> car.getModel().getModelName().equalsIgnoreCase(model))
+                    .collect(Collectors.toList());
+        }
+        if (!manufacturer.isEmpty()) {
+            list = list.stream()
+                    .filter(car -> car.getModel().getManufacturerFk().getManufacturerName().equalsIgnoreCase(manufacturer))
+                    .collect(Collectors.toList());
+        }
+        if (!color.isEmpty()) {
+            list = list.stream()
+                    .filter(car -> car.getColor().equalsIgnoreCase(color))
+                    .collect(Collectors.toList());
         }
 
-        for (Car car : service.findAllCars()) {
-            if (car.getYear() == year
-                    || car.getModel().getModelName().equalsIgnoreCase(model)
-                    || car.getModel().getManufacturerFk().getManufacturerName().equalsIgnoreCase(manufacturer)
-                    || car.getColor().equalsIgnoreCase(color)) {
-                list.add(car);
-            }
-        }
-        String json;
-        if (manufacturer.isEmpty() && model.isEmpty() && color.isEmpty() && yearSt.isEmpty()) {
-            json = new Gson().toJson(service.findAllCars());
-        } else {
-            json = new Gson().toJson(list);
-        }
+        String json = new Gson().toJson(list);
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");

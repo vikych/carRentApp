@@ -101,6 +101,15 @@ public class CarService implements CarDAO {
         return (List<Car>) query.getResultList();
     }
 
+    public Car getCarByRegistrationNumber(String registrationNumber) {
+        return (Car) em.createQuery("From Car c where c.registrationNumber = :registrationNumber")
+                .setParameter("registrationNumber", registrationNumber).getSingleResult();
+    }
+
+    public void update(Car car) {
+        em.merge(car);
+    }
+
     @Override
     public Car getCarByPk(int carPk) throws SQLException {
         Connection connection = ConnectionProvider.jdbcConnection();
@@ -146,22 +155,13 @@ public class CarService implements CarDAO {
 
         PreparedStatement ps = null;
 
-        String sql = "UPDATE CAR SET REGISTRATION_NUMBER=?, MODEL_FK=?, YEAR=?, VEHICLETYPE_FK=?, TRANSMISSION_FK=?, " +
-                "COLOR=?, PRICE=?, PHOTO=?, AVAILABLE=? WHERE CAR_PK=?";
+        String sql = "UPDATE CAR SET AVAILABLE=? WHERE CAR_PK=?";
 
         try {
             ps = connection.prepareStatement(sql);
 
-            ps.setString(1, car.getRegistrationNumber());
-            ps.setInt(2, car.getModel().getModelPk());
-            ps.setInt(3, car.getYear());
-            ps.setInt(4, car.getVehicletype().getVehicleTypePk());
-            ps.setInt(5, car.getTransmission().getTransmissionPk());
-            ps.setString(6, car.getColor());
-            ps.setInt(7, car.getPrice());
-            ps.setString(8, car.getImage());
-            ps.setBoolean(9, car.isAvailable());
-            ps.setInt(10, car.getCarPk());
+            ps.setBoolean(1, car.isAvailable());
+            ps.setInt(2, car.getCarPk());
 
             ps.executeUpdate();
         } catch (SQLException e) {

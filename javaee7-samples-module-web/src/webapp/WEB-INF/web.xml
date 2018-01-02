@@ -59,4 +59,14 @@
         <url-pattern>/searchCar</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>CarRentServlet</servlet-name>
+        <servlet-class>servlets.CarRentServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CarRentServlet</servlet-name>
+        <url-pattern>/carRent</url-pattern>
+    </servlet-mapping>
+
 </web-app>

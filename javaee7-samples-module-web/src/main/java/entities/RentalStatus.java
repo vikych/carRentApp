@@ -13,8 +13,10 @@ public class RentalStatus {
     @Column(name = "STATUS_NAME")
     private String rentalStatusName;
 
-    public RentalStatus(int rentalStatusPk, String rentalStatusName) {
-        this.rentalStatusPk = rentalStatusPk;
+    public RentalStatus() {
+    }
+
+    public RentalStatus(String rentalStatusName) {
         this.rentalStatusName = rentalStatusName;
     }
 

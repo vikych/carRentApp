@@ -1,20 +1,23 @@
 package servlets;
 
+import common.SessionStore;
 import entities.User;
 import services.UserService;
 
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
+@SessionScoped
 public class RegistrationServlet extends HttpServlet {
+
+    @Inject
+    private SessionStore sessionStore;
 
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
@@ -39,29 +42,16 @@ public class RegistrationServlet extends HttpServlet {
         if (service.addUser(user)) {
             try {
                 req.setAttribute("tusername", username);
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            sessionStore.setUser(service.getUserByUsername(username));
             RequestDispatcher dispatcher = req.getRequestDispatcher("homepage.jsp");
             dispatcher.forward(req, response);
         } else {
             RequestDispatcher dispatcher = req.getRequestDispatcher("registration_errorpage.html");
             dispatcher.forward(req, response);
         }
-    }
-
-    private Date convertStringToDate(String strDate) {
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date d = null;
-
-        try {
-            d = format.parse(strDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return new Date(d.getTime());
     }
 
 }

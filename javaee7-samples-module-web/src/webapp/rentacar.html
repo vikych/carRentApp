@@ -163,10 +163,10 @@
     <div class="cd-popup" role="alert">
         <span class="loader"></span>
     </div>
-    <div class="cd-popup" role="alert" data-bind="click: $root.function.ClosePopUpWindow">
-        <div class="cd-popup-container">
+    <div class="search-cars" role="alert" data-bind="click: $root.function.ClosePopUpWindow">
+        <div class="search-cars-container">
             <p>No results</p>
-            <a class="cd-popup-close img-replace" style="cursor:pointer;"
+            <a class="search-cars-close img-replace" style="cursor:pointer;"
                data-bind="click: $root.function.ClosePopUpWindow">Close</a>
         </div>
     </div>
@@ -290,8 +290,6 @@
                     });
                 },
                 SearchCars: function () {
-                    $('.cd-popup').addClass('is-visible');
-                    $('.loader').after(new Spinner({color: '#FFFFFF'}).spin().el);
                     $.ajax({
                         type: "POST",
                         url: "/searchCar",
@@ -321,16 +319,15 @@
                                     });
                                 }
                             } else {
-                                $('.cd-popup').addClass('is-visible');
+                                $('.search-cars').addClass('is-visible');
                             }
-                            $('.loader').hide().empty();
-                            $('.cd-popup').removeClass('is-visible');
                         }
                     });
                 },
                 ClosePopUpWindow: function () {
                     $('.cd-popup').removeClass('is-visible');
                     $('.car-rent-popup').removeClass('is-visible');
+                    $('.search-cars').removeClass('is-visible');
                 },
                 SelectCarForRent: function (action) {
                     debugger;

@@ -140,10 +140,10 @@
     <div class="cd-popup" role="alert">
         <span class="loader"></span>
     </div>
-    <div class="cd-popup" role="alert" data-bind="click: $root.function.ClosePopUpWindow">
-        <div class="cd-popup-container">
+    <div class="search-cars" role="alert" data-bind="click: $root.function.ClosePopUpWindow">
+        <div class="search-cars-container">
             <p>No results</p>
-            <a class="cd-popup-close img-replace" style="cursor:pointer;"
+            <a class="search-cars-close img-replace" style="cursor:pointer;"
                data-bind="click: $root.function.ClosePopUpWindow">Close</a>
         </div>
     </div>
@@ -186,20 +186,23 @@
                     });
                 },
                 SearchCars: function () {
-                    $('.cd-popup').addClass('is-visible');
-                    $('.loader').after(new Spinner({ color: '#FFFFFF' }).spin().el);
                     $.ajax({
                         type: "POST",
                         url: "/searchCar",
-                        data: {Manufacturer:  self.Manufacturer(), Model: self.Model(), Year: self.Year(), Color: self.Color()},
+                        data: {
+                            Manufacturer: self.Manufacturer(),
+                            Model: self.Model(),
+                            Year: self.Year(),
+                            Color: self.Color()
+                        },
                         success: function (res) {
-                            $( ".carBackground" ).removeClass( "carListDiv" );
-                            debugger;
+                            $(".carBackground").removeClass("carListDiv");
                             if (res.length > 0) {
-                            if (res.length === 1) { $( ".carBackground" ).addClass( "carListDiv" ); }
-                            self.carArray([]);
+                                if (res.length === 1) {
+                                    $(".carBackground").addClass("carListDiv");
+                                }
+                                self.carArray([]);
                                 for (var car in res) {
-                                    debugger;
                                     self.carArray.push({
                                         CarImage: res[car].image,
                                         CarManufacturerName: res[car].model.manufacturerFk.manufacturerName,
@@ -207,19 +210,19 @@
                                         CarYear: res[car].year,
                                         Price: res[car].price + ' €',
                                         CarRegistartionNumber: res[car].registrationNumber,
-                                        CarColor: res[car].color
+                                        CarColor: res[car].color,
+                                        CarIsAvailable: res[car].available
                                     });
                                 }
                             } else {
-                                $('.cd-popup').addClass('is-visible');
+                                $('.search-cars').addClass('is-visible');
                             }
-                            $('.loader').hide().empty();
-                            $('.cd-popup').removeClass('is-visible');
                         }
                     });
                 },
                 ClosePopUpWindow: function () {
                     $('.cd-popup').removeClass('is-visible');
+                    $('.search-cars').addClass('is-visible');
                 }
             }
         }

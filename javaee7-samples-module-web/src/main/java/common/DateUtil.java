@@ -24,7 +24,7 @@ public class DateUtil {
     }
 
     public Date formatDate(String strDate) {
-        DateFormat format = new SimpleDateFormat("mm/dd/yyyy", Locale.ENGLISH);
+        DateFormat format = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
         Date date = null;
         try {
             date = format.parse(strDate);

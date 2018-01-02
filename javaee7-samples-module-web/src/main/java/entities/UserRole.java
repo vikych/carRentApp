@@ -7,13 +7,19 @@ import javax.persistence.*;
 public class UserRole {
 
     @Id
-    @Column(name="USER_INFO_ROLE_PK")
+    @Column(name = "USER_INFO_ROLE_PK")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userRolePk;
-    private int userFk;
-    private int roleFk;
 
-    public UserRole(int userRolePk, int userFk, int roleFk) {
+    @OneToOne
+    @JoinColumn(name = "USER_INFO_FK")
+    private User userFk;
+
+    @OneToOne
+    @JoinColumn(name = "ROLE_FK")
+    private Role roleFk;
+
+    public UserRole(int userRolePk, User userFk, Role roleFk) {
         this.userRolePk = userRolePk;
         this.userFk = userFk;
         this.roleFk = roleFk;
@@ -27,19 +33,19 @@ public class UserRole {
         this.userRolePk = userRolePk;
     }
 
-    public int getUserFk() {
+    public User getUserFk() {
         return userFk;
     }
 
-    public void setUserFk(int userFk) {
+    public void setUserFk(User userFk) {
         this.userFk = userFk;
     }
 
-    public int getRoleFk() {
+    public Role getRoleFk() {
         return roleFk;
     }
 
-    public void setRoleFk(int roleFk) {
+    public void setRoleFk(Role roleFk) {
         this.roleFk = roleFk;
     }
 
@@ -51,15 +57,15 @@ public class UserRole {
         UserRole userRole = (UserRole) o;
 
         if (userRolePk != userRole.userRolePk) return false;
-        if (userFk != userRole.userFk) return false;
-        return roleFk == userRole.roleFk;
+        if (userFk != null ? !userFk.equals(userRole.userFk) : userRole.userFk != null) return false;
+        return roleFk != null ? roleFk.equals(userRole.roleFk) : userRole.roleFk == null;
     }
 
     @Override
     public int hashCode() {
         int result = userRolePk;
-        result = 31 * result + userFk;
-        result = 31 * result + roleFk;
+        result = 31 * result + (userFk != null ? userFk.hashCode() : 0);
+        result = 31 * result + (roleFk != null ? roleFk.hashCode() : 0);
         return result;
     }
 

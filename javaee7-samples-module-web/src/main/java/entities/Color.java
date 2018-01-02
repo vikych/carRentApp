@@ -7,9 +7,10 @@ import javax.persistence.*;
 public class Color {
 
     @Id
-    @Column(name="COLOR_PK")
+    @Column(name = "COLOR_PK")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int colorPk;
+    @Column(name = "COLOR_NAME")
     private String colorName;
 
     public Color(int colorPk, String colorName) {

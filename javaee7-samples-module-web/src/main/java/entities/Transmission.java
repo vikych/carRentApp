@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Transmission {
 
     @Id
-    @Column(name="TRANSMISSION_PK")
+    @Column(name = "TRANSMISSION_PK")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int transmissionPk;
 

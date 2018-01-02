@@ -1,32 +1,31 @@
 package entities;
 
 import javax.persistence.*;
-import java.sql.Blob;
 
 @Entity
 @Table(name = "CAR")
 public class Car {
 
     @Id
-    @Column(name="CAR_PK")
+    @Column(name = "CAR_PK")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int carPk;
 
     @Column(name = "REGISTRATION_NUMBER")
     private String registrationNumber;
 
-    @OneToOne (targetEntity = Model.class, cascade = {CascadeType.ALL},fetch= FetchType.EAGER)
+    @OneToOne(targetEntity = Model.class, cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "MODEL_FK")
     private Model model;
 
     @Column(name = "YEAR")
     private int year;
 
-    @OneToOne (cascade = {CascadeType.ALL},fetch= FetchType.EAGER)
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "VEHICLETYPE_FK")
     private VehicleType vehicletype;
 
-    @OneToOne (cascade = {CascadeType.ALL},fetch= FetchType.EAGER)
+    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinColumn(name = "TRANSMISSION_FK")
     private Transmission transmission;
 

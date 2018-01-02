@@ -17,11 +17,18 @@ public class JPAUtilImpl {
             e.printStackTrace();
         }
 
+        Manufacturer manufacturer = new Manufacturer("Hyundai");
+        Model model = new Model(manufacturer, "i20");
+
+        createCar("LV-0001", model, 2015,
+                new VehicleType("Green Driving"), new Transmission( "Automatic"), "Grey",
+                25, "css/image/car1.jpg", true, manufacturer);
+
         Manufacturer manufacturer8 = new Manufacturer("Chevrolet");
         Model model8 = new Model(manufacturer8, "Cruze");
 
         createCar("LV-0009", model8, 2006,
-                new VehicleType("Pick up"), new Transmission( "Manual"), "Brown",
+                new VehicleType("Pick up"), new Transmission( "Manual"), "Blue",
                 25, "css/image/car9.jpg", true, manufacturer8);
 
         Manufacturer manufacturer9 = new Manufacturer("Citroen");
@@ -31,7 +38,7 @@ public class JPAUtilImpl {
                 new VehicleType("Sedan"), new Transmission( "Manual"), "White",
                 45, "css/image/car10.jpg", true, manufacturer9);
 
-        Manufacturer manufacturer10 = new Manufacturer("FIAT");
+        Manufacturer manufacturer10 = new Manufacturer("Chevrolet");
         Model model10 = new Model(manufacturer10, "City");
 
         createCar("LV-0011", model10, 2013,
@@ -44,13 +51,6 @@ public class JPAUtilImpl {
         createCar("LV-0012", model11, 2015,
                 new VehicleType("Duo"), new Transmission( "Manual"), "White",
                 70, "css/image/car12.jpg", true, manufacturer11);
-
-        Manufacturer manufacturer = new Manufacturer("Hyundai");
-        Model model = new Model(manufacturer, "i20");
-
-        createCar("LV-0001", model, 2015,
-                new VehicleType("Green Driving"), new Transmission( "Automatic"), "Grey",
-                25, "css/image/car1.jpg", true, manufacturer);
 
         Manufacturer manufacturer1 = new Manufacturer("Renault");
         Model model1 = new Model(manufacturer1, "Sandero");
@@ -77,7 +77,7 @@ public class JPAUtilImpl {
         Model model4 = new Model(manufacturer4, "M5");
 
         createCar("LV-0005", model4, 2016,
-                new VehicleType("Sedan"), new Transmission( "Manual"), "Grey",
+                new VehicleType("Sedan"), new Transmission( "Manual"), "Red",
                 76, "css/image/car5.jpg", true, manufacturer4);
 
         Manufacturer manufacturer5 = new Manufacturer("KIA");
@@ -101,7 +101,6 @@ public class JPAUtilImpl {
         createCar("LV-0008", model7, 2015,
                 new VehicleType("Green Driving"), new Transmission( "Automatic"), "Red",
                 80, "css/image/car8.jpg", true, manufacturer7);
-
 
         try {
             if (util != null) {

@@ -344,7 +344,7 @@
                     $.ajax({
                         type: "GET",
                         url: "/carRent",
-                        data: {RegistrationNumber: self.RegistrationNumberForPopUp(), PickUp: $("#to").val(), DropOff:  $( "#from" ).val()},
+                        data: {RegistrationNumber: self.RegistrationNumberForPopUp(), PickUp: $("#from").val(), DropOff:  $( "#to" ).val()},
                         success: function (res) {
                             debugger;
                         }

@@ -239,6 +239,13 @@
                data-bind="click: $root.function.ClosePopUpWindow">Close</a>
         </div>
     </div>
+    <div class="rent-car-result" role="alert" data-bind="click: $root.function.ClosePopUpWindow">
+        <div class="rent-car-result-container">
+            <p>No results</p>
+            <a class="rent-car-result-close img-replace" style="cursor:pointer;"
+               data-bind="click: $root.function.ClosePopUpWindow">Close</a>
+        </div>
+    </div>
 </div>
 </body>
 </html>
@@ -271,6 +278,7 @@
                             $('.loader').after(new Spinner({color: '#FFFFFF'}).spin().el);
                             if (res.length > 0) {
                                 debugger;
+                                self.carArray([]);
                                 for (var car in res) {
                                     self.carArray.push({
                                         CarImage: res[car].image,
@@ -347,6 +355,9 @@
                         data: {RegistrationNumber: self.RegistrationNumberForPopUp(), PickUp: $("#from").val(), DropOff:  $( "#to" ).val()},
                         success: function (res) {
                             debugger;
+                            $('.car-rent-popup').removeClass('is-visible');
+                            $('.rent-car-result').addClass('is-visible');
+
                         }
                     });
                 }

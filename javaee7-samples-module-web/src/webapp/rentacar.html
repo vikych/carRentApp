@@ -78,12 +78,9 @@
                 </ul>
             </div>
         </nav>
-    </div>
+
     <div style="background: url(css/image/background_img.jpg) no-repeat center center fixed;" class="carBackground">
         <div style="width: 100%;margin-top: 137px;" data-bind="foreach: {data: $root.carArray, as :'$ca' }">
-            <div style="background: url(css/image/background_img.jpg) no-repeat center center fixed;"
-                 class="carBackground">
-                <div style="width: 100%;margin-top: 137px;" data-bind="foreach: {data: $root.carArray, as :'$ca' }">
                     <div style="width: 1448px;height: auto;border: 2px solid black;margin-left: 248px;display: inline-flex; margin-top: 14px;">
                         <div style="width: 400px;height: 400px;border-bottom: 2px solid black;">
                             <img  src="css/image/car3.jpg"/>
@@ -159,7 +156,6 @@
                 </div>
             </div>
         </div>
-    </div>
     <div class="cd-popup" role="alert">
         <span class="loader"></span>
     </div>
@@ -239,11 +235,11 @@
                data-bind="click: $root.function.ClosePopUpWindow">Close</a>
         </div>
     </div>
-    <div class="rent-car-result" role="alert" data-bind="click: $root.function.ClosePopUpWindow">
+    <div class="rent-car-result" role="alert" data-bind="click: $root.function.CloseCarResultPopUp">
         <div class="rent-car-result-container">
-            <p>No results</p>
+            <p data-bind="text: $root.CarResultPopUpText"></p>
             <a class="rent-car-result-close img-replace" style="cursor:pointer;"
-               data-bind="click: $root.function.ClosePopUpWindow">Close</a>
+               data-bind="click: $root.function.CloseCarResultPopUp">Close</a>
         </div>
     </div>
 </div>
@@ -258,7 +254,7 @@
             self.Year = ko.observable("");
             self.Color = ko.observable("");
             self.CarIsAvailable = ko.observable("Car is unavailable. Sorry");
-
+            self.CarResultPopUpText = ko.observable("");
             self.ManufacturerForPopUp = ko.observable("");
             self.ModelForPopUp = ko.observable("");
             self.YearForPopUp = ko.observable("");
@@ -355,11 +351,16 @@
                         data: {RegistrationNumber: self.RegistrationNumberForPopUp(), PickUp: $("#from").val(), DropOff:  $( "#to" ).val()},
                         success: function (res) {
                             debugger;
+                            self.CarResultPopUpText(res);
                             $('.car-rent-popup').removeClass('is-visible');
                             $('.rent-car-result').addClass('is-visible');
 
                         }
                     });
+                },CloseCarResultPopUp: function () {
+                    debugger;
+                    $('.car-rent-popup').removeClass('is-visible');
+                    location.reload();
                 }
 
             }

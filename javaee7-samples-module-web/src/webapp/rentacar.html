@@ -148,7 +148,7 @@
                                 <tr>
                                     <td>
                                         <button class="button button5"
-                                                data-bind="click: $root.function.SelectCarForRent.bind($root)">SELECT
+                                                data-bind="click: $root.function.SelectCarForRent.bind($root),enable: $ca.CarIsAvailable,attr: {title: !$ca.CarIsAvailable ? $root.CarIsAvailable :'' }">SELECT
                                         </button>
                                     </td>
                                 </tr>
@@ -230,7 +230,7 @@
             </div>
             <div>
                 <p>Pick up:<input type="text" id="from"></p>
-                <p>Drop off:<input type="text" class="datepicker"></p>
+                <p>Drop off:<input type="text" id="to"></p>
                 <button class="button button5" style="margin-left: 350px;" data-bind="click: $root.function.SubmitRentedCar">
                     SUBMIT
                 </button>
@@ -250,6 +250,7 @@
             self.Model = ko.observable("");
             self.Year = ko.observable("");
             self.Color = ko.observable("");
+            self.CarIsAvailable = ko.observable("Car is unavailable. Sorry");
 
             self.ManufacturerForPopUp = ko.observable("");
             self.ModelForPopUp = ko.observable("");
@@ -278,7 +279,8 @@
                                         CarYear: res[car].year,
                                         Price: res[car].price + ' €',
                                         CarRegistrationNumber: res[car].registrationNumber,
-                                        CarColor: res[car].color
+                                        CarColor: res[car].color,
+                                        CarIsAvailable: res[car].available
                                     });
                                 }
                                 $('.loader').hide().empty();
@@ -301,14 +303,12 @@
                         },
                         success: function (res) {
                             $(".carBackground").removeClass("carListDiv");
-                            debugger;
                             if (res.length > 0) {
                                 if (res.length === 1) {
                                     $(".carBackground").addClass("carListDiv");
                                 }
                                 self.carArray([]);
                                 for (var car in res) {
-                                    debugger;
                                     self.carArray.push({
                                         CarImage: res[car].image,
                                         CarManufacturerName: res[car].model.manufacturerFk.manufacturerName,
@@ -316,7 +316,8 @@
                                         CarYear: res[car].year,
                                         Price: res[car].price + ' €',
                                         CarRegistartionNumber: res[car].registrationNumber,
-                                        CarColor: res[car].color
+                                        CarColor: res[car].color,
+                                        CarIsAvailable: res[car].available
                                     });
                                 }
                             } else {
@@ -355,15 +356,20 @@
 
             }
         }
-        $( ".datepicker" ).datepicker({
+        $( "#from, #to" ).datepicker({
+            changeYear: true,
             changeMonth: true,
-            changeYear:true,
-            minDate:0
-        });
-        $( "#from" ).datepicker({
-            changeMonth: true,
-            changeYear:true,
-            minDate:0
+            minDate: 0,
+            onSelect: function( selectedDate ) {
+                if(this.id == 'from'){
+                    var dateMin = $('#from').datepicker("getDate");
+                    var rMin = new Date(dateMin.getFullYear(), dateMin.getMonth(),dateMin.getDate() + 1);
+
+                    $('#to').datepicker("option","minDate",rMin);
+
+                }
+
+            }
         });
         var rentModel = new RentCarViewModel();
         rentModel.function.getCarList();

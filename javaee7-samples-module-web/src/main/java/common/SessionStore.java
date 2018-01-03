@@ -5,7 +5,6 @@ import entities.User;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.SessionScoped;
-import javax.ws.rs.DefaultValue;
 import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -15,17 +14,14 @@ public class SessionStore implements Serializable {
     public static AtomicLong INSTANCE_COUNT = new AtomicLong(0);
 
     private User user;
-    @DefaultValue("")
-    private String manufacturer;
-    @DefaultValue("")
-    private String model;
-    @DefaultValue("")
-    private String year;
-    @DefaultValue("")
-    private String color;
+    private String manufacturer = "";
+    private String model = "";
+    private String year = "";
+    private String color = "";
+
 
     @PostConstruct
-    public void onNewSession(){
+    public void onNewSession() {
         INSTANCE_COUNT.incrementAndGet();
     }
 
@@ -70,7 +66,7 @@ public class SessionStore implements Serializable {
     }
 
     @PreDestroy
-    public void onSessionDestruction(){
+    public void onSessionDestruction() {
         INSTANCE_COUNT.decrementAndGet();
     }
 

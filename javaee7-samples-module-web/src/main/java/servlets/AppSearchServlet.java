@@ -1,10 +1,12 @@
 package servlets;
 
 import com.google.gson.Gson;
+import common.SessionStore;
 import entities.Car;
 import services.CarService;
 
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -18,11 +20,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @SessionScoped
-@WebServlet("/searchCar")
-public class SearchServlet extends HttpServlet {
+@WebServlet("/appSearch")
+public class AppSearchServlet extends HttpServlet {
+
+    @Inject
+    private SessionStore sessionStore;
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("carRentPU");
         EntityManager em = emf.createEntityManager();
         CarService service = new CarService(em);
@@ -57,11 +62,27 @@ public class SearchServlet extends HttpServlet {
                     .filter(car -> car.getColor().equalsIgnoreCase(color))
                     .collect(Collectors.toList());
         }
+        if (!list.isEmpty()) {
+            sessionStore.setColor(color);
+            sessionStore.setManufacturer(manufacturer);
+            sessionStore.setModel(model);
+            sessionStore.setYear(yearSt);
 
-        String json = new Gson().toJson(list);
+            String success = "Success";
 
-        resp.setContentType("application/json");
-        resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(json);
+            String json = new Gson().toJson(success);
+
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding("UTF-8");
+            resp.getWriter().write(json);
+        } else {
+            String failure = "No results found";
+
+            String json = new Gson().toJson(failure);
+
+            resp.setContentType("application/json");
+            resp.setCharacterEncoding("UTF-8");
+            resp.getWriter().write(json);
+        }
     }
 }

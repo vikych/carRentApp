@@ -16,7 +16,7 @@
 
     <servlet-mapping>
         <servlet-name>AuthorizationServlet</servlet-name>
-        <url-pattern>/home</url-pattern>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -69,4 +69,13 @@
         <url-pattern>/carRent</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>AppSearchServlet</servlet-name>
+        <servlet-class>servlets.AppSearchServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AppSearchServlet</servlet-name>
+        <url-pattern>/appSearch</url-pattern>
+    </servlet-mapping>
 </web-app>

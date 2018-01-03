@@ -1,33 +1,36 @@
 package servlets;
 
+import com.google.gson.Gson;
+import common.SessionStore;
+import services.UserService;
+
+import javax.faces.bean.SessionScoped;
+import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@SessionScoped
+@WebServlet("/app")
 public class AppServlet extends HttpServlet {
+
+    @Inject
+    private SessionStore sessionStore;
 
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String json = new Gson().toJson(sessionStore.getUser().getUsername());
 
-        // request attributes to be sent to JSP
-        String username = null;
+        response.setContentType("application/json");
 
-        try {
-            // set username value
-            username = request.getParameter("username");
-
-            // set username as request attribute
-            request.setAttribute("tusername", username);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        // forward request (along with its attributes) to the status JSP
-        RequestDispatcher rd = request.getRequestDispatcher("homepage.jsp");
-        rd.forward(request, response);
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
     }
 }

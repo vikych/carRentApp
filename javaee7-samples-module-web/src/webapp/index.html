@@ -4,28 +4,101 @@
     <meta charset="UTF-8">
     <title>Authorization</title>
     <link rel="stylesheet" type="text/css" href="/css/authorization.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type='text/javascript' src='js/knockout-3.4.2.js'></script>
     <script src="/js/authorization.js"></script>
 </head>
 <body>
-<div class="login-page">
-    <div class="form">
-        <form action="registration" method="post" class="register-form">
-            <input type="text" name="FirstName" placeholder="First Name"/>
-            <input type="text" name="LastName" placeholder="Last Name"/>
-            <input type="text" name="Username" placeholder="Username"/>
-            <input type="password" name="Password" placeholder="Password"/>
-            <input type="text" name="Email" placeholder="Email"/>
-            <button class="create">create</button>
-            <p class="message">Already registered? <a href="#">Sign In</a></p>
-        </form>
-        <form action="home" method="post" class="login-form">
-            <input type="text" name="username" placeholder="username"/>
-            <input type="password" name="password" placeholder="password"/>
-            <button type="submit">login</button>
-            <p class="message">Not registered? <a href="#">Create an account</a></p>
-        </form>
+<div id="ErrorPageContainer">
+    <div class="login-page">
+        <div class="form">
+            <form class="register-form">
+                <input type="text" name="FirstName" data-bind="value: $root.FirstName" placeholder="First Name"/>
+                <input type="text" name="LastName" data-bind="value: $root.LastName" placeholder="Last Name"/>
+                <input type="text" data-bind="value: $root.RegistrationUsername" placeholder="Username"/>
+                <input type="password" data-bind="value: $root.RegistrationPassword" placeholder="Password"/>
+                <input type="text" name="Email" data-bind="value: $root.Email" placeholder="Email"/>
+                <button class="create" data-bind="click: $root.function.Create">create</button>
+                <p class="message">Already registered? <a href="#">Sign In</a></p>
+            </form>
+            <form class="login-form">
+                <input type="text" data-bind="value: $root.Username" name="username" placeholder="username"/>
+                <input type="password" data-bind="value: $root.Password" name="password" placeholder="password"/>
+                <button type="submit" data-bind="click: $root.function.Login">login</button>
+                <p class="message">Not registered? <a href="#">Create an account</a></p>
+            </form>
+        </div>
+    </div>
+    <div class="cd-popup" role="alert" data-bind="click: $root.function.ClosePopUpWindow" style="z-index: 1;">
+        <div class="cd-popup-container">
+            <p style="font-size: 32px; text-align: center; padding: 0px; padding-top: 30px;"><b data-bind="text: $root.ErrorMsg">!</b></p>
+            <a class="cd-popup-close img-replace" style="cursor:pointer;" data-bind="click: $root.function.ClosePopUpWindow">Close</a>
+        </div>
     </div>
 </div>
 </body>
 </html>
+<script type="text/javascript">
+    (function () {
+        function ErrorPageViewModel() {
+            var self = this;
+            debugger;
+            self.Username = ko.observable("");
+             self.Password = ko.observable("");
+              self.FirstName = ko.observable("");
+               self.LastName = ko.observable("");
+                self.Email = ko.observable("");
+                self.ErrorMsg = ko.observable("");
+                 self.RegistrationUsername = ko.observable("");
+                 self.RegistrationPassword = ko.observable("");
+              self.function = {
+                Create: function () {
+                  $.ajax({
+                    type: "POST",
+                    url: "/registration",
+                     data: {
+                            Username: self.RegistrationUsername(),
+                            Password: self.RegistrationPassword(),
+                            FirstName: self.FirstName(),
+                            LastName: self.LastName(),
+                            Email: self.Email()
+                        },
+                    success: function (res) {
+                        if(res === "Success"){
+                            window.location.replace("http://localhost:8889/homepage.html");
+                        }else{
+                        self.ErrorMsg(res);
+                              $('.cd-popup').addClass('is-visible');
+                        }
+                    }
+                });
+                },
+                Login: function () {
+                  $.ajax({
+                    type: "POST",
+                    url: "/login",
+                     data: {
+                            Username: self.Username(),
+                            Password: self.Password()
+                        },
+                    success: function (res) {
+                        if(res === "Success"){
+                            window.location.replace("http://localhost:8889/homepage.html");
+                        }else{
+                        self.ErrorMsg(res);
+                              $('.cd-popup').addClass('is-visible');
+                        }
+                    }
+                });
+                },
+                ClosePopUpWindow: function () {
+                    $('.cd-popup').removeClass('is-visible');
+                }
+              }
+        }
+        var model = new ErrorPageViewModel();
+        ko.applyBindings(model, document.getElementById("ErrorPageContainer"));
+    })();
+
+</script>

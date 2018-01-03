@@ -44,17 +44,17 @@ public class SearchServlet extends HttpServlet {
         }
         if (!model.isEmpty()) {
             list = list.stream()
-                    .filter(car -> car.getModel().getModelName().equalsIgnoreCase(model))
+                    .filter(car -> car.getModel().getModelName().equalsIgnoreCase(model.trim()))
                     .collect(Collectors.toList());
         }
         if (!manufacturer.isEmpty()) {
             list = list.stream()
-                    .filter(car -> car.getModel().getManufacturerFk().getManufacturerName().equalsIgnoreCase(manufacturer))
+                    .filter(car -> car.getModel().getManufacturerFk().getManufacturerName().equalsIgnoreCase(manufacturer.trim()))
                     .collect(Collectors.toList());
         }
         if (!color.isEmpty()) {
             list = list.stream()
-                    .filter(car -> car.getColor().equalsIgnoreCase(color))
+                    .filter(car -> car.getColor().equalsIgnoreCase(color.trim()))
                     .collect(Collectors.toList());
         }
 

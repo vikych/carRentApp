@@ -16,7 +16,9 @@
 
 </head>
 <style>
-    #CarListContainer > .carListDiv { height: 726px; }
+    #CarListContainer > .carListDiv {
+        height: 726px;
+    }
 </style>
 <body>
 <div id="CarListContainer">
@@ -106,7 +108,8 @@
                     </table>
                 </div>
                 <div style="width: 448px;height: 400px; background-color: white;">
-                    <i class="fa fa-info-circle" style="font-size: 25px;float: right;margin: 20px;" aria-hidden="true" data-bind="attr: {title: $ca.CarIsAvailable ? 'Car is available' : 'Car is rented' }"></i>
+                    <i class="fa fa-info-circle" style="font-size: 25px;float: right;margin: 20px;" aria-hidden="true"
+                       data-bind="attr: {title: $ca.CarIsAvailable ? 'Car is available' : 'Car is rented' }"></i>
                     <table style="margin-top: 142px; margin-left: 41px;">
                         <tbody>
                         <tr>
@@ -165,7 +168,7 @@
                         url: "/car",
                         success: function (res) {
                             $('.cd-popup').addClass('is-visible');
-                            $('.loader').after(new Spinner({ color: '#FFFFFF' }).spin().el);
+                            $('.loader').after(new Spinner({color: '#FFFFFF'}).spin().el);
                             if (res.length > 0) {
                                 for (var car in res) {
                                     self.carArray.push({

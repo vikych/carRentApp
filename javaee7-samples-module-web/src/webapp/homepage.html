@@ -17,9 +17,9 @@
     <div class="allcontain">
         <div class="header">
             <ul class="socialicon">
-               <li><a href="http://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
-               <li><a href="http://www.twitter.com/"><i class="fa fa-twitter"></i></a></li>
-               <li><a href="http://www.google.com/"><i class="fa fa-google-plus"></i></a></li>
+                <li><a href="http://www.facebook.com/"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="http://www.twitter.com/"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="http://www.google.com/"><i class="fa fa-google-plus"></i></a></li>
             </ul>
             <ul class="logreg">
                 <li>Give us a call : +371 29846263</li>
@@ -59,27 +59,28 @@
                     <div class="searchtxt">
                         <h1>CAR SEARCH</h1>
                     </div>
-                <form class="navbar-form navbar-left searchformmargin" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control searchform" data-bind="value: $data.Manufacturer"
-                               placeholder="Manufacturer">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control searchform" data-bind="value: $data.Model"
-                               placeholder="Model">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control searchform inputYear" data-bind="value: $data.Year"
-                               placeholder="Year">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control searchform" data-bind="value: $data.Color"
-                               placeholder="Color">
-                    </div>
-                </form>
+                    <form class="navbar-form navbar-left searchformmargin" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control searchform" data-bind="value: $data.Manufacturer"
+                                   placeholder="Manufacturer">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control searchform" data-bind="value: $data.Model"
+                                   placeholder="Model">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control searchform inputYear" data-bind="value: $data.Year"
+                                   placeholder="Year">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control searchform" data-bind="value: $data.Color"
+                                   placeholder="Color">
+                        </div>
+                    </form>
                     <ul class="nav navbar-nav navbarborder">
                         <li class="li-search">
-                            <button class="searchbutton" data-bind="click: $root.function.SearchCars"><span class="glyphicon glyphicon-search "></span></button>
+                            <button class="searchbutton" data-bind="click: $root.function.SearchCars"><span
+                                    class="glyphicon glyphicon-search "></span></button>
                         </li>
                     </ul>
                 </div>
@@ -89,19 +90,21 @@
     <div class="cd-popup" role="alert" data-bind="click: $root.function.ClosePopUpWindow">
         <div class="cd-popup-container">
             <p>Welcome, <b data-bind="text: $root.Username"></b></p>
-            <a class="cd-popup-close img-replace" style="cursor:pointer;" data-bind="click: $root.function.ClosePopUpWindow">Close</a>
+            <a class="cd-popup-close img-replace" style="cursor:pointer;"
+               data-bind="click: $root.function.ClosePopUpWindow">Close</a>
         </div>
     </div>
-    	<div class="search-cars" role="alert" data-bind="click: $root.function.ClosePopUpWindow">
-    		<div class="search-cars-container">
-    			<p style="font-size: 42px;text-align: center;padding: 0px;">All search fields are empty! Try again!</p>
-    			<a class="search-cars-close img-replace" style="cursor:pointer;"
-    			   data-bind="click: $root.function.ClosePopUpWindow">Close</a>
-    		</div>
-    	</div>
+    <div class="search-cars" role="alert" data-bind="click: $root.function.ClosePopUpWindow">
+        <div class="search-cars-container">
+            <p style="font-size: 42px;text-align: center;padding: 0px;">All search fields are empty! Try again!</p>
+            <a class="search-cars-close img-replace" style="cursor:pointer;"
+               data-bind="click: $root.function.ClosePopUpWindow">Close</a>
+        </div>
+    </div>
     <div class="rent-car-result" role="alert" data-bind="click: $root.function.ClosePopUpWindow">
         <div class="rent-car-result-container">
-            <p style="font-size: 32px; text-align: center; padding: 0px; padding-top: 30px;"><b data-bind="text: $root.ErrorMsg">!</b></p>
+            <p style="font-size: 32px; text-align: center; padding: 0px; padding-top: 30px;"><b
+                    data-bind="text: $root.ErrorMsg">!</b></p>
             <a class="rent-car-result-close img-replace" style="cursor:pointer;"
                data-bind="click: $root.function.ClosePopUpWindow">Close</a>
         </div>
@@ -121,46 +124,48 @@
             self.Username = ko.observable("");
             self.function = {
                 GetGreetingMSG: function () {
-                $.ajax({
-                    type: "GET",
-                    url: "/app",
-                    success: function (res) {
-                        self.Username(res);
-                        $('.cd-popup').addClass('is-visible');
-                    }
-                });
+                    $.ajax({
+                        type: "GET",
+                        url: "/app",
+                        success: function (res) {
+                            self.Username(res);
+                            $('.cd-popup').addClass('is-visible');
+                        }
+                    });
                 },
                 ClosePopUpWindow: function () {
-                  $('.search-cars').removeClass('is-visible');
+                    $('.search-cars').removeClass('is-visible');
                     $('.cd-popup').removeClass('is-visible');
                     $('.rent-car-result').removeClass('is-visible');
                 },
                 SearchCars: function () {
 
-                     if(self.Manufacturer().length > 0 || self.Model().length > 0 || self.Year().length > 0 || self.Color().length > 0 ){
-                             $.ajax({
-                    type: "POST",
-                    url: "/appSearch",
-                     data: {
-                            Manufacturer: self.Manufacturer,
-                            Model: self.Model,
-                            Year: self.Year,
-                            Color: self.Color
-                        },
-                    success: function (res) {
-                        if(res === "Success"){
-                           window.location.replace("http://localhost:8889/carlist.html");
-                        }else{
-                        self.ErrorMsg(res);
-                              $('.rent-car-result').addClass('is-visible');
-                        }
+                    if (self.Manufacturer().length > 0 || self.Model().length > 0 || self.Year().length > 0 || self.Color().length > 0) {
+                        $.ajax({
+                            type: "POST",
+                            url: "/appSearch",
+                            data: {
+                                Manufacturer: self.Manufacturer,
+                                Model: self.Model,
+                                Year: self.Year,
+                                Color: self.Color
+                            },
+                            success: function (res) {
+                                if (res === "Success") {
+                                    window.location.replace("http://localhost:8889/carlist.html");
+                                } else {
+                                    self.ErrorMsg(res);
+                                    $('.rent-car-result').addClass('is-visible');
+                                }
+                            }
+                        });
+                    } else {
+                        $('.search-cars').addClass('is-visible');
                     }
-                });
-                        }else{
-                                    	 $('.search-cars').addClass('is-visible');                        }
                 }
             }
         }
+
         var model = new HomePageViewModel();
         model.function.GetGreetingMSG();
         ko.applyBindings(model, document.getElementById("HomePageContainer"));

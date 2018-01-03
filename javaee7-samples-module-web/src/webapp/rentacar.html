@@ -111,7 +111,9 @@
                         </table>
                     </div>
                     <div style="width: 448px;height: 400px; background-color: white;  border-right: 2px solid black;">
-                        <i class="fa fa-info-circle" style="font-size: 25px;float: right;margin: 20px;" aria-hidden="true" data-bind="attr: {title: $ca.CarIsAvailable ? 'Car is available' : 'Car is rented' }"></i>
+                        <i class="fa fa-info-circle" style="font-size: 25px;float: right;margin: 20px;"
+                           aria-hidden="true"
+                           data-bind="attr: {title: $ca.CarIsAvailable ? 'Car is available' : 'Car is rented' }"></i>
                         <table style="margin-top: 142px; margin-left: 41px;">
                             <tbody>
                             <tr>
@@ -357,22 +359,26 @@
                     $.ajax({
                         type: "GET",
                         url: "/carRent",
-                        data: {RegistrationNumber: self.RegistrationNumberForPopUp(), PickUp: $("#from").val(), DropOff:  $( "#to" ).val()},
+                        data: {
+                            RegistrationNumber: self.RegistrationNumberForPopUp(),
+                            PickUp: $("#from").val(),
+                            DropOff: $("#to").val()
+                        },
                         success: function (res) {
                             for (var text in res) {
-                                if (text==="0"){
+                                if (text === "0") {
                                     self.CarResultPopUpText(res[text]);
                                 }
-                                if (text==="1"){
+                                if (text === "1") {
                                     self.CarResultPopUpText2(res[text]);
                                 }
-                                if (text==="2"){
+                                if (text === "2") {
                                     self.CarResultPopUpText3(res[text]);
                                 }
-                                if (text==="3"){
-                                     self.CarResultPopUpText4(res[text]);
+                                if (text === "3") {
+                                    self.CarResultPopUpText4(res[text]);
                                 }
-                                if (text==="4"){
+                                if (text === "4") {
                                     self.CarResultPopUpText5(res[text]);
                                 }
                             }
@@ -387,15 +393,16 @@
                 }
             }
         }
-        $( "#from, #to" ).datepicker({
+
+        $("#from, #to").datepicker({
             changeYear: true,
             changeMonth: true,
             minDate: 0,
-            onSelect: function( selectedDate ) {
-                if(this.id == 'from'){
+            onSelect: function (selectedDate) {
+                if (this.id == 'from') {
                     var dateMin = $('#from').datepicker("getDate");
-                    var rMin = new Date(dateMin.getFullYear(), dateMin.getMonth(),dateMin.getDate() + 1);
-                    $('#to').datepicker("option","minDate",rMin);
+                    var rMin = new Date(dateMin.getFullYear(), dateMin.getMonth(), dateMin.getDate() + 1);
+                    $('#to').datepicker("option", "minDate", rMin);
                 }
             }
         });

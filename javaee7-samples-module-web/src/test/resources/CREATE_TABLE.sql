@@ -18,6 +18,8 @@ CREATE TABLE USER_INFO (
 insert into user_info (user_name, password, first_name, last_name, date_of_birth, person_ID, email)
 values ('user1', '123', 'Victoria', 'Chernishenko', '1996-01-23', '010203-11032', 'name1@email.com');
 
+insert into rental_status values('1', 'in progress');
+insert into rental_status values('2', 'new');
 
 
 CREATE TABLE ROLE (

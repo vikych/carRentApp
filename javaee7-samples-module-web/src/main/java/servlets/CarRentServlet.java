@@ -64,7 +64,7 @@ public class CarRentServlet extends HttpServlet {
         rental.setDropOffTime(dropOffDate);
         rental.setUserFk(user);
         rental.setTotalPrice(car.getPrice() * days.intValue());
-        rental.setStatusFk(rentalService.getRentalStatus(1));
+        rental.setStatusFk(rentalService.getRentalStatus(2));
 
         rentalService.save(rental);
 

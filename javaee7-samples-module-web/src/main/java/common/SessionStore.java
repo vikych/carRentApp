@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @SessionScoped
 public class SessionStore implements Serializable {
 
-    public static AtomicLong INSTANCE_COUNT = new AtomicLong(0);
+    public static AtomicLong INSTANCE_COUNT = new AtomicLong(0); //TODO remove
 
     private User user;
     private String manufacturer = "";

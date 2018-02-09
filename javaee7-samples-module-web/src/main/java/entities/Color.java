@@ -1,8 +1,11 @@
 package entities;
 
+import org.hibernate.annotations.Immutable;
+
 import javax.persistence.*;
 
 @Entity
+@Immutable //TODO @Cacheable
 @Table(name = "Color")
 public class Color {
 

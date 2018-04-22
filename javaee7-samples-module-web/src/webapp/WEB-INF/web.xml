@@ -30,6 +30,17 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>MobileServlet</servlet-name>
+        <servlet-class>servlets.MobileIntegrationServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MobileServlet</servlet-name>
+        <url-pattern>/mob</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
         <servlet-name>CarServlet</servlet-name>
         <servlet-class>servlets.CarServlet</servlet-class>
     </servlet>

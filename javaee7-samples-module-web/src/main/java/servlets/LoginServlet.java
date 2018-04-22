@@ -2,6 +2,8 @@ package servlets;
 
 import com.google.gson.Gson;
 import common.AuthenticationHelper;
+import common.JPAUtil;
+import common.JPAUtilImpl;
 import common.SessionStore;
 import services.UserService;
 
@@ -22,6 +24,9 @@ public class LoginServlet extends HttpServlet {
     private SessionStore sessionStore;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        JPAUtilImpl util = new JPAUtilImpl();
+        util.test();
+
         String uname = request.getParameter("Username");
         String pword = request.getParameter("Password");
         response.setContentType("text/html");

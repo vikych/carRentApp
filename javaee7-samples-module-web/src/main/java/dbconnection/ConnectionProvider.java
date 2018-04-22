@@ -11,7 +11,7 @@ public class ConnectionProvider {
 
     private final static String URL = "jdbc:mysql://localhost:3306/databaseconnection";
     private final static String USERNAME = "root";
-    private final static String PASSWORD = "user1";
+    private final static String PASSWORD = "root";
     private static Connection connection;
 
     public static Connection jdbcConnection() {

@@ -3,14 +3,14 @@
     <!-- Enable features -->
     <featureManager>
         <feature>webProfile-7.0</feature>
-        <feature>localConnector-1.0</feature>
+        <!--<feature>localConnector-1.0</feature>-->
     </featureManager>
 
     <keyStore id="defaultKeyStore" password="Liberty"/>
     <remoteFileAccess>
         <writeDir>${server.config.dir}</writeDir>
     </remoteFileAccess>
-    <httpEndpoint id="defaultHttpEndpoint" httpPort="8889" httpsPort="9443"/>
+    <httpEndpoint id="defaultHttpEndpoint" host="*" httpPort="8889" httpsPort="9443"/>
 
     <wasJmsEndpoint id="InboundJmsEndpoint" wasJmsPort="55600" wasJmsSSLPort="55601"/>
 
@@ -22,17 +22,17 @@
     <applicationMonitor updateTrigger="mbean"/>
 
     <!-- configurating test users for local development -->
-    <basicRegistry id="basic">
-        <user name="admin" password="admin"/>
-        <user name="user1" password="user1"/>
+    <!--<basicRegistry id="basic">-->
+    <!--<user name="admin" password="admin"/>-->
+    <!--<user name="user1" password="user1"/>-->
 
-        <group name="java_ee7_samples_users">
-            <member name="user1"/>
-        </group>
-    </basicRegistry>
-    <administrator-role>
-        <user>admin</user>
-    </administrator-role>
+    <!--<group name="java_ee7_samples_users">-->
+    <!--<member name="user1"/>-->
+    <!--</group>-->
+    <!--</basicRegistry>-->
+    <!--<administrator-role>-->
+    <!--<user>admin</user>-->
+    <!--</administrator-role>-->
 
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
@@ -53,4 +53,3 @@
     <!--Disables autoscan of implicit beans in libraries-->
     <cdi12 enableImplicitBeanArchives="false"/>
 </server>
-

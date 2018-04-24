@@ -1,13 +1,11 @@
 package services;
 
+import com.google.gson.JsonObject;
 import dao.UserDAO;
 import dbconnection.ConnectionProvider;
 import entities.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class UserService implements UserDAO {
 
@@ -87,5 +85,40 @@ public class UserService implements UserDAO {
             }
         }
         return user;
+    }
+
+    public JsonObject getRentedCarByUsername(String user) {
+        Connection connection = ConnectionProvider.jdbcConnection();
+        try {
+            CallableStatement statement = connection.prepareCall("{call getRentedCarListForCurrentUser(?)}");
+
+            statement.setString(1, user);
+
+            statement.execute();
+            ResultSet resultSet = statement.getResultSet();
+            JsonObject rentedCar = new JsonObject();
+            while (resultSet.next()) {
+                rentedCar.addProperty("Username",resultSet.getString("USER_NAME"));
+                rentedCar.addProperty("Photo",resultSet.getString("PHOTO"));
+                rentedCar.addProperty("Manufacturer",resultSet.getString("MANUFACTURER_NAME"));
+                rentedCar.addProperty("Model",resultSet.getString("MODEL_NAME"));
+                rentedCar.addProperty("RegistrationNumber",resultSet.getString("REGISTRATION_NUMBER"));
+                rentedCar.addProperty("Year",resultSet.getString("YEAR"));
+                rentedCar.addProperty("Price",resultSet.getDouble("PRICE"));
+                rentedCar.addProperty("DateFrom", String.valueOf(resultSet.getDate("DateFrom")));
+                rentedCar.addProperty("DateTo", String.valueOf(resultSet.getDate("DateTo")));
+                rentedCar.addProperty("PlaceWherePickCar",resultSet.getString("PlaceWherePickCar"));
+            }
+
+            statement.close();
+            return rentedCar;
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        } finally {
+            ConnectionProvider.closeConnection(connection);
+        }
+        return null;
     }
 }

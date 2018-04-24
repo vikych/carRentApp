@@ -3,7 +3,6 @@ package servlets;
 import com.google.gson.Gson;
 import common.SessionStore;
 
-import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@SessionScoped
 @WebServlet("/app")
 public class AppServlet extends HttpServlet {
 
@@ -21,7 +19,7 @@ public class AppServlet extends HttpServlet {
 
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String json = new Gson().toJson(sessionStore.getUser().getUsername());
+        String json = new Gson().toJson(sessionStore.getUsername());
 
         response.setContentType("application/json");
 

@@ -8,8 +8,8 @@ import entities.Rental;
 import entities.User;
 import services.CarService;
 import services.RentalService;
+import services.UserService;
 
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -27,7 +27,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-@SessionScoped
 @WebServlet("/carRent")
 public class CarRentServlet extends HttpServlet {
 
@@ -41,6 +40,7 @@ public class CarRentServlet extends HttpServlet {
         EntityManager em = emf.createEntityManager();
         CarService carService = new CarService(em);
         RentalService rentalService = new RentalService(em);
+        UserService service = new UserService();
 
         String registrationNumber = req.getParameter("RegistrationNumber");
         String pickUp = req.getParameter("PickUp");
@@ -53,7 +53,8 @@ public class CarRentServlet extends HttpServlet {
 
         Long days = dateDiff.get(TimeUnit.DAYS);
 
-        User user = store.getUser();
+        String username = store.getUsername();
+        User user = service.getUserByUsername(username);
 
         Car car = carService.getCarByRegistrationNumber(registrationNumber);
 
@@ -66,10 +67,11 @@ public class CarRentServlet extends HttpServlet {
         rental.setTotalPrice(car.getPrice() * days.intValue());
         rental.setStatusFk(rentalService.getRentalStatus(2));
 
-        rentalService.save(rental);
+        //rentalService.save(rental);
 
         rental.setRentalID(rentalService.createRentalID(rental, car.getCarPk(), user.getUserPk(), days.intValue()));
-        em.merge(rental);
+        rentalService.save(rental);
+//        em.merge(rental);
 
         car.setAvailable(false);
         try {

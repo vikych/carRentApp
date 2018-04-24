@@ -18,9 +18,6 @@ CREATE TABLE USER_INFO (
 insert into user_info (user_name, password, first_name, last_name, date_of_birth, person_ID, email)
 values ('user1', '123', 'Victoria', 'Chernishenko', '1996-01-23', '010203-11032', 'name1@email.com');
 
-insert into rental_status values('1', 'in progress');
-insert into rental_status values('2', 'new');
-
 
 CREATE TABLE ROLE (
 	ROLE_PK INT NOT NULL AUTO_INCREMENT,
@@ -123,5 +120,6 @@ CREATE TABLE RENTAL (
 	CONSTRAINT RENTAL_STATUS_FK FOREIGN KEY (STATUS_FK) REFERENCES RENTAL_STATUS(STATUS_PK) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert into rental_status values (1, "In Progress");
+insert into rental_status values('1', 'in progress');
+insert into rental_status values('2', 'new');
 

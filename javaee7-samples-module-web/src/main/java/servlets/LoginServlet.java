@@ -2,12 +2,9 @@ package servlets;
 
 import com.google.gson.Gson;
 import common.AuthenticationHelper;
-import common.JPAUtil;
-import common.JPAUtilImpl;
 import common.SessionStore;
 import services.UserService;
 
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@SessionScoped
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
@@ -24,9 +20,6 @@ public class LoginServlet extends HttpServlet {
     private SessionStore sessionStore;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        JPAUtilImpl util = new JPAUtilImpl();
-        util.test();
-
         String uname = request.getParameter("Username");
         String pword = request.getParameter("Password");
         response.setContentType("text/html");
@@ -34,7 +27,7 @@ public class LoginServlet extends HttpServlet {
         UserService service = new UserService();
 
         if (AuthenticationHelper.isAllowed(uname, pword)) {
-            sessionStore.setUser(service.getUserByUsername(uname));
+            sessionStore.setUsername(uname);
             String success = "Success";
 
             String json = new Gson().toJson(success);

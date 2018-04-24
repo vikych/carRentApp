@@ -39,6 +39,16 @@
         <url-pattern>/mob</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>MobileCarListServlet</servlet-name>
+        <servlet-class>servlets.MobileCarListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MobileCarListServlet</servlet-name>
+        <url-pattern>/mobCarList</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>CarServlet</servlet-name>

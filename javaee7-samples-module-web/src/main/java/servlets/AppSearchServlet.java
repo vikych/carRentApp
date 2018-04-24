@@ -5,7 +5,6 @@ import common.SessionStore;
 import entities.Car;
 import services.CarService;
 
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -19,7 +18,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@SessionScoped
 @WebServlet("/appSearch")
 public class AppSearchServlet extends HttpServlet {
 

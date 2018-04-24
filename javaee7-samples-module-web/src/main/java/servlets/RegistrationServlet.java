@@ -5,7 +5,6 @@ import common.SessionStore;
 import entities.User;
 import services.UserService;
 
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@SessionScoped
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
 
@@ -42,7 +40,7 @@ public class RegistrationServlet extends HttpServlet {
         user.setEmail(email);
 
         if (service.addUser(user)) {
-            sessionStore.setUser(service.getUserByUsername(username));
+            sessionStore.setUsername(username);
             String success = "Success";
 
             String json = new Gson().toJson(success);

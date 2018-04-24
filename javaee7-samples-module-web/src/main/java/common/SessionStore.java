@@ -1,36 +1,24 @@
 package common;
 
-import entities.User;
-
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.ApplicationScoped;
 import java.io.Serializable;
-import java.util.concurrent.atomic.AtomicLong;
 
-@SessionScoped
+@ApplicationScoped
 public class SessionStore implements Serializable {
 
-    public static AtomicLong INSTANCE_COUNT = new AtomicLong(0); //TODO remove
-
-    private User user;
+    private String username = "";
     private String manufacturer = "";
     private String model = "";
     private String year = "";
     private String color = "";
 
 
-    @PostConstruct
-    public void onNewSession() {
-        INSTANCE_COUNT.incrementAndGet();
+    public String getUsername() {
+        return username;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getManufacturer() {
@@ -63,11 +51,6 @@ public class SessionStore implements Serializable {
 
     public void setColor(String color) {
         this.color = color;
-    }
-
-    @PreDestroy
-    public void onSessionDestruction() {
-        INSTANCE_COUNT.decrementAndGet();
     }
 
 }
